@@ -1,0 +1,11 @@
+Hello, World
+<script src="{{ 'reCAPTCHA-spambuster.js' | asset_url }}" defer></script>
+{% schema %}
+{
+  "name": "reCAPTCHA Spambuster",
+  "target": "body",
+  //"templates": ["blog", "customers/register", "customers/login", "customers/account", "customers/register"],
+  "javascript": "reCAPTCHA-spambuster.js",
+  "stylesheet": "reCAPTCHA-spambuster.css"
+}
+{% endschema %}
