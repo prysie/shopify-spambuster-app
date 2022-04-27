@@ -104,7 +104,7 @@ export const ConnectedScriptInstalledView = (props) => {
             ReCAPTCHA spambuster is installed.
           </p>
           <p>
-            To enable the app, you will need to edit the app embed from the theme editor, or click the following <Link url={props.enablementLink}>enablement-link</Link>. 
+            To enable the app, you will need to edit the app embed from the theme editor, or click the following <Link to={props.enablementLink}>enablement-link</Link>. 
           </p>
           <p>
             Your blog comment form on article pages will now include reCAPTCHA v3 invisible verification. This can be confirmed by the text added under the submit button, which is mandated by the Google reCAPTCHA v3 licence. Any comments that do not pass the recaptcha verification will not be submitted.
