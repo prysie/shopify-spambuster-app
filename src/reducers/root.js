@@ -39,6 +39,7 @@ export const getInitialState = () => {
     contactEnabled: false,
 
     errorMessageContact: '',
+    enablementLink: 'http://www.google.com',
     showContactUpdateSuccess: false
   })
 }
