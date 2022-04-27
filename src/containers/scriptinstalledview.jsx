@@ -33,7 +33,8 @@ export const mapStateToProps = (state, props) => {
     showKeySecretUpdateSuccess: state.root.get('showKeySecretUpdateSuccess'),
     contactEnabled: state.root.get('contactEnabled'),
     errorMessageContact: state.root.get('errorMessageContact'),
-    showContactUpdateSuccess: state.root.get('showContactUpdateSuccess')
+    showContactUpdateSuccess: state.root.get('showContactUpdateSuccess'),
+    enablementLink: state.root.get('enablementLink')
   }
 }
 
@@ -47,7 +48,8 @@ export const mapDispatchToProps = (dispatch) => {
     dismissError: () => dispatch(dismissError()),
     dismissSuccess: () => dispatch(dismissSuccess()),
     handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
-    handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value))
+    handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
+    updateEnablementLink: (enablementLink) => dispatch(updateEnablementLink(enablementLink))
   }
 }
 
@@ -88,7 +90,10 @@ export const ConnectedScriptInstalledView = (props) => {
   const handleChangeContact = (newChecked) => {
     props.changeContact(newChecked)
   }
-
+  
+  const updateEnablementLink = (enablementLink) => {
+    props.updateEnablementLink(enablementLink)
+  }
   return (
     <>
       <Card sectioned>
