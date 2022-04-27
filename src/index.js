@@ -15,7 +15,9 @@ const render = (apiKey, shop) => {
   if (rootEl) {
     ReactDOM.render(
       <Provider store={store}>
-        <App apiKey={apiKey} shop={shop} />
+        <Router>
+          <App apiKey={apiKey} shop={shop} />
+        </Router>
       </Provider>,
       rootEl
     )
