@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import {
   Card,
   Form,
@@ -19,7 +19,8 @@ import {
   dismissSuccess,
   dismissErrorContact,
   dismissSuccessContact,
-  changeContact
+  changeContact,
+  updateEnablementLink
 } from '../actions/interface.js'
 import {
   update,

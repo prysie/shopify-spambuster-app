@@ -7,7 +7,8 @@ import {
 
   CONTACT_ERROR_DISMISS,
   CONTACT_SUCCESS_DISMISS,
-  CHANGE_CONTACT
+  CHANGE_CONTACT,
+  ENABLEMENT_LINK
 } from '../constants.js'
 
 export const handleRcSiteKeyChange = (value) => {
@@ -61,6 +62,15 @@ export const changeContact = (newChecked) => {
     type: CHANGE_CONTACT,
     payload: {
       newChecked: newChecked
+    }
+  }
+}
+
+export const updateEnablementLink = (enablementLink) => {
+  return {
+    type: ENABLEMENT_LINK,
+    payload: {
+      enablementLink: enablementLink
     }
   }
 }
