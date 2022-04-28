@@ -62,8 +62,7 @@ const rootReducer = (state, action) => {
       state = state.set('isLoading', false)
       return state
     case INSTALL_GET_DONE:
-      state = state.set('hasScriptTag', true)
-      state = state.set('enablementLink', 'https://' + action.payload.shop + '/admin/themes/current/editor?context=apps' + '&template=' + '$' +'&activateAppId=' + '7f2f526f-ddcb-445c-9bc7-75d61af80dcb' + '/' + 'reCAPTCHA-spambuster')
+      state = state.set('hasScriptTag', true)    
       state = state.set('contactEnabled', action.payload.contactEnabled === true)
       state = state.set('rcSiteKey', '')
       state = state.set('rcSiteSecret', '')
