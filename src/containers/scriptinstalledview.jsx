@@ -104,7 +104,7 @@ export const ConnectedScriptInstalledView = (props) => {
             ReCAPTCHA spambuster is installed.
           </p>
           <p>
-            To enable the app, you will need to edit the app embed from the theme editor, or click the following <Link to='www.google.com'>enablement-link</Link>. 
+            Please get your keys here: <a href={props.enablementLink} target='_blank' rel='noopener noreferrer'>Enablement Link</a>.
           </p>
         </TextContainer>
       </Card>
