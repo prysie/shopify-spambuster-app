@@ -56,8 +56,7 @@ export const getAppStatusDone = (statusData) => {
     payload: {
       hasScriptTag: statusData.hasScriptTag,
       contactEnabled: statusData.contactEnabled,
-      shop: statusData.shop,
-      enablementLink: statusData.enablementLink
+      shop: statusData.shop
     }
   }
 }
@@ -101,8 +100,7 @@ export const install = () => {
     const enablementLink = rootState.get('enablementLink')
     const data = {
       rcSiteKey: rcSiteKey,
-      rcSiteSecret: rcSiteSecret,
-      enablementLink: enablementLink
+      rcSiteSecret: rcSiteSecret
     }
     dispatch(installStart())
     post(BACKEND_URL + '/setuprc' + window.location.search, data)
