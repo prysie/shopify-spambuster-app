@@ -99,6 +99,17 @@ export const ConnectedScriptInstalledView = (props) => {
   return (
     <>
       <Card sectioned>
+        <TextContainer title='Enable ReCAPTCHA spambuster'>
+          <p>
+            ReCAPTCHA spambuster is installed.
+          </p>
+          <p>
+            To enable the app, you will need to edit the app embed from the theme editor, or click the following <Link to='www.google.com'>enablement-link</Link>. 
+          </p>
+        </TextContainer>
+      </Card>
+
+      <Card sectioned>
         <TextContainer>
           <p>
             ReCAPTCHA spambuster is installed.
