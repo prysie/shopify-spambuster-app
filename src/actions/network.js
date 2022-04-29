@@ -56,6 +56,7 @@ export const getAppStatusDone = (statusData) => {
     payload: {
       hasScriptTag: statusData.hasScriptTag,
       contactEnabled: statusData.contactEnabled,
+      shop: statusData.shop,
       enablementLink: statusData.enablementLink
     }
   }
