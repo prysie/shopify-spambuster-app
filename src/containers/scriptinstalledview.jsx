@@ -101,10 +101,10 @@ export const ConnectedScriptInstalledView = (props) => {
       <Card sectioned>
         <TextContainer title='Enable ReCAPTCHA spambuster'>
           <p>
-            ReCAPTCHA spambuster is now installed but is disabled.
+            ReCAPTCHA spambuster is now installed.
           </p>
           <p>
-            Please enable the app by clicking the following <a href={props.enablementLink} target='_blank' rel='noopener noreferrer'>Enablement Link</a>, or manually enable from the app embed function wihin the theme editor for the store.
+            To enable the app please click the following <a href={props.enablementLink} target='_blank' rel='noopener noreferrer'>Enablement Link</a>, or you can manually enable it from the app embed function wihin the theme editor for your store.
           </p>
         </TextContainer>
       </Card>
