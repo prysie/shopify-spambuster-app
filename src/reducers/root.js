@@ -45,7 +45,6 @@ export const getInitialState = () => {
 }
 
 const rootReducer = (state, action) => {
-  console.log('Action: ' + action)
   if (!state) {
     state = getInitialState()
   }
