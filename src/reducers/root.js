@@ -39,7 +39,7 @@ export const getInitialState = () => {
     contactEnabled: false,
 
     errorMessageContact: '',
-    enablementLink: 'https://' + originShop + '/admin/themes/current/editor?context=apps' + '&template=' + '$' +'&activateAppId=' + '7f2f526f-ddcb-445c-9bc7-75d61af80dcb' + '/' + 'reCAPTCHA-spambuster',
+    enablementLink: 'https://' + props.shop + '/admin/themes/current/editor?context=apps' + '&template=' + '$' +'&activateAppId=' + '7f2f526f-ddcb-445c-9bc7-75d61af80dcb' + '/' + 'reCAPTCHA-spambuster',
     showContactUpdateSuccess: false
   })
 }
@@ -58,7 +58,6 @@ const rootReducer = (state, action) => {
     case APPSTATUS_GET_DONE:
       state = state.set('hasScriptTag', action.payload.hasScriptTag)
       state = state.set('contactEnabled', action.payload.contactEnabled === true)
-      state = state.set('enablementLink', 'https://' + originShop + '/admin/themes/current/editor?context=apps' + '&template=' + '$' +'&activateAppId=' + '7f2f526f-ddcb-445c-9bc7-75d61af80dcb' + '/' + 'reCAPTCHA-spambuster')
       state = state.set('isLoading', false)
       return state
     case INSTALL_GET_DONE:
