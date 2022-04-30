@@ -1,10 +1,10 @@
-<script src="{{ 'spambuster-dev.js?rcSiteKey=6LfwwdsbAAAAANt64eZNKeZADgMj2CaLGTRmV4uU' | asset_url }}" defer></script>
+<script src="{{ 'spambuster-dev.js' | asset_url }}" data-contactEnabled=true data-rcSiteKey="6LfwwdsbAAAAANt64eZNKeZADgMj2CaLGTRmV4uU" defer></script>
 {% schema %}
 {
   "name": "reCAPTCHA Spambuster",
   "target": "body",
   //"templates": ["blog", "customers/register", "customers/login", "customers/account", "customers/register"],
-  "javascript": "spambuster-dev.js",
+  //"javascript": "spambuster-dev.js?rcSiteKey=6LfwwdsbAAAAANt64eZNKeZADgMj2CaLGTRmV4uU",
   "stylesheet": "reCAPTCHA-spambuster.css"
 }
 {% endschema %}
