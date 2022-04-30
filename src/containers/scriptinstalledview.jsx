@@ -101,22 +101,16 @@ export const ConnectedScriptInstalledView = (props) => {
       <Card sectioned>
         <TextContainer title='Enable ReCAPTCHA spambuster'>
           <p>
-            ReCAPTCHA spambuster is installed.
+            ReCAPTCHA spambuster is installed but is disabled by default.
           </p>
           <p>
-            Please get your keys here: <a href={props.enablementLink} target='_blank' rel='noopener noreferrer'>Enablement Link</a>.
+            To enable please click the following <a href={props.enablementLink} target='_blank' rel='noopener noreferrer'>Enablement Link</a>, or manually enable via the app embed function from wihin the theme editor.
           </p>
         </TextContainer>
       </Card>
 
       <Card sectioned>
         <TextContainer>
-          <p>
-            ReCAPTCHA spambuster is installed.
-          </p>
-          <p>
-            To enable the app, you will need to edit the app embed from the theme editor, or click the following <Link to={props.enablementLink}>enablement-link</Link>. 
-          </p>
           <p>
             Your blog comment form on article pages will now include reCAPTCHA v3 invisible verification. This can be confirmed by the text added under the submit button, which is mandated by the Google reCAPTCHA v3 licence. Any comments that do not pass the recaptcha verification will not be submitted.
           </p>
