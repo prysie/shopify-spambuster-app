@@ -1,4 +1,7 @@
-<script id="spambuster" src="{{ 'spambuster-dev.js' | asset_url }}" data-contactEnabled=true data-rcSiteKey="6LfwwdsbAAAAANt64eZNKeZADgMj2CaLGTRmV4uU" defer></script>
+{% assign contactEnabled = 'true' %}
+{% assign rcSiteKey = '6Le26rQfAAAAAIkjnI6O3QFzT0DOTUUm2nzAJfPy' %}
+
+<script id="spambuster" src="{{ 'spambuster-dev.js' | asset_url }}" data-contactEnabled={{ contactEnabled }} data-rcSiteKey={{rcSiteKey}} defer></script>
 {% schema %}
 {
   "name": "reCAPTCHA Spambuster",
