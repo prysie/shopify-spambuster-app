@@ -214,7 +214,7 @@ export const ConnectedScriptInstalledView = (props) => {
                 value={1}
                 onChange={handleRangeSliderChange}
                 prefix={<p>0</p>}
-                suffix={<p style={suffixStyles}>{rangeValue}</p>}
+                suffix={<p>1</p>}
                 />
               <Button submit>Update</Button>
             </FormLayout>
