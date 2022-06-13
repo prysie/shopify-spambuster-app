@@ -105,8 +105,18 @@ export const ConnectedScriptInstalledView = (props) => {
     props.handleRangeSliderChange(value)
   }
   return (
-    <>
-      <Card sectioned>
+    <>      
+    <Card sectioned title="Enable ReCAPTCHA spambuster">
+      <TextContainer title='Enable ReCAPTCHA spambuster'>
+        <p>
+          ReCAPTCHA spambuster is now installed.
+        </p>
+        <p>
+          To enable the app please click the following <a href={props.enablementLink} target='_blank' rel='noopener noreferrer'>Enablement Link</a>, or you can manually enable it from the app embed function wihin the theme editor for your store.
+        </p>
+      </TextContainer>
+    </Card>
+      <Card sectioned title="Learn more about Google reCAPTCHA v3">
         <TextContainer title='Learn more about Google reCAPTCHA v3'>
         <YouTube videoId="tbvxFW4UJdU"/>
           <p>
@@ -117,16 +127,7 @@ export const ConnectedScriptInstalledView = (props) => {
           </p>
         </TextContainer>
       </Card>
-      <Card sectioned>
-        <TextContainer title='Enable ReCAPTCHA spambuster'>
-          <p>
-            ReCAPTCHA spambuster is now installed.
-          </p>
-          <p>
-            To enable the app please click the following <a href={props.enablementLink} target='_blank' rel='noopener noreferrer'>Enablement Link</a>, or you can manually enable it from the app embed function wihin the theme editor for your store.
-          </p>
-        </TextContainer>
-      </Card>
+
 
       <Card sectioned>
         <TextContainer>
