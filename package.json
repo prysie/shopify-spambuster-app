@@ -9,7 +9,7 @@
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production"
   },
-  "author": "Chris Hjorth - contact@chrishjorth.com",
+  "author": "Matthew Pryse - contact@jola.com.au",
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.14.5",
@@ -37,6 +37,7 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^4.3.0",
     "style-loader": "^1.2.1",
+    "url-loader": "^4.1.1",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.9.2"

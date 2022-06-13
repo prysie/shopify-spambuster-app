@@ -24,6 +24,17 @@ module.exports = (env, argv) => {
             }
           },
           {
+            test: /\.(png|jpg|gif)$/i,
+            use: [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 52000,
+                },
+              },
+            ],
+          },
+          {
             test: /\.css$/,
             use: ['style-loader', 'css-loader']
           }
@@ -60,6 +71,17 @@ module.exports = (env, argv) => {
             use: {
               loader: 'babel-loader'
             }
+          },
+          {
+            test: /\.(png|jpg|gif)$/i,
+            use: [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 52000,
+                },
+              },
+            ],
           },
           {
             test: /\.css$/,

@@ -25,7 +25,7 @@ import {
   update,
   updateContact
 } from '../actions/network.js'
-import youtubetn from './images/youthumb_reCAPTC.png'
+import youtubetn from '../images/youthumb_reCAPTC.png'
 
 export const mapStateToProps = (state, props) => {
   return {
