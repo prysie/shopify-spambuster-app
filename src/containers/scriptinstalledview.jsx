@@ -162,7 +162,7 @@ export const ConnectedScriptInstalledView = (props) => {
                 </Card.Section>
               ) : null}
               <Checkbox
-                label='Enable reCAPTCHA on contact forms'
+                label='Enable reCAPTCHA V3 on contact forms'
                 checked={props.contactEnabled}
                 onChange={handleChangeContact}
               />
