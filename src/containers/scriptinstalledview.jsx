@@ -10,6 +10,7 @@ import {
   Banner,
   TextContainer,
   Checkbox,
+  VideoThumbnail,
   RangeSlider
 } from '@shopify/polaris'
 
