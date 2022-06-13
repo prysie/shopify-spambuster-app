@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   Card,
+  MediaCard,
   Form,
   FormLayout,
   TextField,
