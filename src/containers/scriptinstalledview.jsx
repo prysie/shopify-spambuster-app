@@ -211,7 +211,7 @@ export const ConnectedScriptInstalledView = (props) => {
                 label="SPAM Threshold Value"
                 min={0}
                 max={1}
-                value={rangeValue}
+                value={1}
                 onChange={handleRangeSliderChange}
                 prefix={<p>0</p>}
                 suffix={<p style={suffixStyles}>{rangeValue}</p>}
