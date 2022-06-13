@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import {
   Card,
   Form,
@@ -9,7 +8,8 @@ import {
   Button,
   Banner,
   TextContainer,
-  Checkbox
+  Checkbox,
+  RangeSlider
 } from '@shopify/polaris'
 
 import {
@@ -25,6 +25,7 @@ import {
   update,
   updateContact
 } from '../actions/network.js'
+import youtubetn from './images/youthumb_reCAPTC.png'
 
 export const mapStateToProps = (state, props) => {
   return {
@@ -35,7 +36,8 @@ export const mapStateToProps = (state, props) => {
     contactEnabled: state.root.get('contactEnabled'),
     errorMessageContact: state.root.get('errorMessageContact'),
     showContactUpdateSuccess: state.root.get('showContactUpdateSuccess'),
-    enablementLink: state.root.get('enablementLink')
+    enablementLink: state.root.get('enablementLink'),
+    ytrecaptn: state.root.get('youttubrecaptn')
   }
 }
 
@@ -95,9 +97,26 @@ export const ConnectedScriptInstalledView = (props) => {
   const handleEnablementLink = (newChecked) => {
     props.enablementLink(newChecked)
   }
-
+  
+  const handleRangeSliderChange = (value) => {
+    props.handleRangeSliderChange(value)
+  }
   return (
     <>
+      <MediaCard
+        title="Learn more about Google reCAPTCHA v3"
+        primaryAction={{
+          content: 'Learn more',
+          onAction: () => {},
+        }}
+        description={`reCAPTCHA v3 is a new version that detects abusive traffic on your website without user friction. It returns a score for each request you send to reCAPTCHA and gives you more flexibility to fight against spam and abuse in your own way.`}
+        popoverActions={[{content: 'Dismiss', onAction: () => {}}]}
+      >
+        <VideoThumbnail
+          videoLength={135}
+          thumbnailUrl={youtubetn} // This path is relative to the root of the site.
+        />
+      </MediaCard>
       <Card sectioned>
         <TextContainer title='Enable ReCAPTCHA spambuster'>
           <p>
@@ -185,6 +204,16 @@ export const ConnectedScriptInstalledView = (props) => {
                 onChange={handleRcSiteSecretChange}
                 label='reCAPTCHA secret key'
               />
+              <RangeSlider
+                output
+                label="SPAM Threshold Value"
+                min={0}
+                max={1}
+                value={rangeValue}
+                onChange={handleRangeSliderChange}
+                prefix={<p>0</p>}
+                suffix={<p style={suffixStyles}>{rangeValue}</p>}
+                />
               <Button submit>Update</Button>
             </FormLayout>
           </Form>

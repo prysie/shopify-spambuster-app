@@ -78,18 +78,15 @@ const rootReducer = (state, action) => {
       state = state.set('showContactUpdateSuccess', true)
       state = state.set('isLoading', false)
       return state
-
     case RCSITEKEY_CHANGE:
       state = state.set('rcSiteKey', action.payload.value)
       return state
     case RCSITESECRET_CHANGE:
       state = state.set('rcSiteSecret', action.payload.value)
       return state
-
     case CHANGE_CONTACT:
       state = state.set('contactEnabled', action.payload.newChecked)
       return state
-
     case NETWORK_WARNING_SHOW:
       state = state.set('errorMessage', action.payload.message)
       state = state.set('isLoading', false)
