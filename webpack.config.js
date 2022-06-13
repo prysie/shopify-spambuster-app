@@ -10,6 +10,11 @@ module.exports = (env, argv) => {
       ],
       mode: 'production',
       output: {
+        filename: '025a5a2862a30644633d838f2076f3f7.png',
+        path: path.resolve(__dirname, 'build/prod'),
+        publicPath: '/'
+      },
+      output: {
         filename: '[name]-bundle-prod.js',
         path: path.resolve(__dirname, 'build/prod'),
         publicPath: '/'
