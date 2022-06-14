@@ -205,18 +205,6 @@ export const ConnectedScriptInstalledView = (props) => {
                 onChange={handleRcSiteSecretChange}
                 label='reCAPTCHA secret key'
               />
-              <RangeSlider
-                output
-                label="SPAM Threshold Value"
-                helpText="Select the appropriate reCAPTCHA V3 SPAM threshold used for rejecting comments"
-                min={0}
-                step={.1}
-                max={1}
-                value={.5}
-                onChange={handleRangeSliderChange}
-                prefix={<p>0</p>}
-                suffix={<p>1</p>}
-                />
               <Button submit>Update</Button>
             </FormLayout>
           </Form>
@@ -226,6 +214,22 @@ export const ConnectedScriptInstalledView = (props) => {
             <p>For security purposes the current key and secret are not displayed. If in doubt simply update with your current key and secret.</p>
           </TextContainer>
         </Card.Section>
+      </Card>
+      <Card title='Tune reCAPTCHA V3' sectioned>
+        <Card.Section>
+          <RangeSlider
+          output
+          label="SPAM Threshold Value"
+          helpText="Select the appropriate reCAPTCHA V3 SPAM threshold used for rejecting comments"
+          min={0}
+          step={.1}
+          max={1}
+          value={.5}
+          onChange={handleRangeSliderChange}
+          prefix={<p>0</p>}
+          suffix={<p>1</p>}
+          />
+        </Card.Section>          
       </Card>
     </>
   )
