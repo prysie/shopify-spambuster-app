@@ -129,7 +129,7 @@ export const ConnectedScriptInstalledView = (props) => {
       </Card>
 
 
-      <Card sectioned>
+      <Card sectioned title="Blog comments forms">
         <TextContainer>
           <p>
             Your blog comment form on article pages will now include reCAPTCHA v3 invisible verification. This can be confirmed by the text added under the submit button, which is mandated by the Google reCAPTCHA v3 licence. Any comments that do not pass the recaptcha verification will not be submitted.
@@ -208,7 +208,9 @@ export const ConnectedScriptInstalledView = (props) => {
               <RangeSlider
                 output
                 label="SPAM Threshold Value"
+                helpText="Select the appropriate reCAPTCHA V3 SPAM threshold used for rejecting comments"
                 min={0}
+                step={.1}
                 max={1}
                 value={.5}
                 onChange={handleRangeSliderChange}
