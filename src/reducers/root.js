@@ -90,7 +90,7 @@ const rootReducer = (state, action) => {
       state = state.set('contactEnabled', action.payload.newChecked)
       return state
     case RANGE_SLIDER_CHANGE:
-        state = state.set('rangeSliderValue', action.payload.rangeSliderValue)
+        state = state.set('rangeSliderValue', action.payload.value)
         return state  
     case NETWORK_WARNING_SHOW:
       state = state.set('errorMessage', action.payload.message)

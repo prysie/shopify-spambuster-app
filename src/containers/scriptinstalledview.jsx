@@ -57,7 +57,7 @@ export const mapDispatchToProps = (dispatch) => {
     handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
     handleEnablementLink: (enablementLink) => dispatch(handleEnablementLink(enablementLink)),
-    handleRangeSliderChange: (value) => dispatch(handleRangeSliderChange(value))
+    handleRangeSliderChange: (newValue) => dispatch(handleRangeSliderChange(newValue))
   }
 }
 
@@ -98,13 +98,9 @@ export const ConnectedScriptInstalledView = (props) => {
   const handleChangeContact = (newChecked) => {
     props.changeContact(newChecked)
   }
-
-  const handleEnablementLink = (newChecked) => {
-    props.enablementLink(newChecked)
-  }
   
-  const handleRangeSliderChange = (value) => {
-    props.handleRangeSliderChange(value)
+  const handleRangeSliderChange = (newValue) => {
+    props.handleRangeSliderChange(newValue)
   }
   return (
     <>      

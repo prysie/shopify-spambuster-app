@@ -29,11 +29,11 @@ export const handleRcSiteSecretChange = (value) => {
   }
 }
 
-export const handleRangeSliderChange = (value) => {
+export const handleRangeSliderChange = (newValue) => {
   return {
     type: RANGE_SLIDER_CHANGE,
     payload: {
-      value: value
+      value: newValue
     }
   }
 }
