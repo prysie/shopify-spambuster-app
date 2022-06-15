@@ -40,7 +40,8 @@ export const getInitialState = () => {
 
     errorMessageContact: '',
     enablementLink: '',
-    showContactUpdateSuccess: false
+    showContactUpdateSuccess: false,
+    rangeSliderValue: .5
   })
 }
 
@@ -87,6 +88,9 @@ const rootReducer = (state, action) => {
     case CHANGE_CONTACT:
       state = state.set('contactEnabled', action.payload.newChecked)
       return state
+      case RANGE_SLIDER:
+        state = state.set('rangeSliderValue', action.payload.rangeSliderValue)
+        return state  
     case NETWORK_WARNING_SHOW:
       state = state.set('errorMessage', action.payload.message)
       state = state.set('isLoading', false)

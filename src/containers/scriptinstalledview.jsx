@@ -18,6 +18,7 @@ import {
 import {
   handleRcSiteKeyChange,
   handleRcSiteSecretChange,
+  handleRangeSliderChange,
   dismissError,
   dismissSuccess,
   dismissErrorContact,
@@ -55,7 +56,8 @@ export const mapDispatchToProps = (dispatch) => {
     dismissSuccess: () => dispatch(dismissSuccess()),
     handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
-    handleEnablementLink: (enablementLink) => dispatch(handleEnablementLink(enablementLink))
+    handleEnablementLink: (enablementLink) => dispatch(handleEnablementLink(enablementLink)),
+    handleRangeSliderChange: (value) => dispatch(handleRangeSliderChange(value))
   }
 }
 
