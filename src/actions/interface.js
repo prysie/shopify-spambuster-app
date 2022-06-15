@@ -1,6 +1,7 @@
 import {
   RCSITEKEY_CHANGE,
   RCSITESECRET_CHANGE,
+  RANGE_SLIDER_CHANGE,
 
   ERROR_DISMISS,
   SUCCESS_DISMISS,
@@ -22,6 +23,15 @@ export const handleRcSiteKeyChange = (value) => {
 export const handleRcSiteSecretChange = (value) => {
   return {
     type: RCSITESECRET_CHANGE,
+    payload: {
+      value: value
+    }
+  }
+}
+
+export const handleRangeSliderChange = (value) => {
+  return {
+    type: RANGE_SLIDER_CHANGE,
     payload: {
       value: value
     }

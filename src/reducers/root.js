@@ -14,6 +14,7 @@ import {
   RCSITESECRET_CHANGE,
 
   CHANGE_CONTACT,
+  RANGE_SLIDER_CHANGE,
 
   NETWORK_WARNING_SHOW,
   ERROR_DISMISS,
@@ -88,7 +89,7 @@ const rootReducer = (state, action) => {
     case CHANGE_CONTACT:
       state = state.set('contactEnabled', action.payload.newChecked)
       return state
-      case RANGE_SLIDER:
+    case RANGE_SLIDER_CHANGE:
         state = state.set('rangeSliderValue', action.payload.rangeSliderValue)
         return state  
     case NETWORK_WARNING_SHOW:

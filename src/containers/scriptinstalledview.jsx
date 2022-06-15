@@ -41,7 +41,7 @@ export const mapStateToProps = (state, props) => {
     errorMessageContact: state.root.get('errorMessageContact'),
     showContactUpdateSuccess: state.root.get('showContactUpdateSuccess'),
     enablementLink: state.root.get('enablementLink'),
-    ytrecaptn: state.root.get('youttubrecaptn')
+    rangeSliderValue: state.root.get('rangeSliderValue')
   }
 }
 
@@ -226,7 +226,7 @@ export const ConnectedScriptInstalledView = (props) => {
           min={0}
           step={.1}
           max={1}
-          value={.5}
+          value={props.rangeSliderValue}
           onChange={handleRangeSliderChange}
           prefix={<p>0</p>}
           suffix={<p>1</p>}
