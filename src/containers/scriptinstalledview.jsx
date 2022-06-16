@@ -172,7 +172,7 @@ export const ConnectedScriptInstalledView = (props) => {
                 <RangeSlider
                 output
                 label="SPAM Score Threshold"
-                helpText="Select the appropriate reCAPTCHA V3 SPAM threshold used for rejecting comments"
+                helpText="Select the appropriate reCAPTCHA V3 SPAM score threshold for rejecting comments"
                 min={0}
                 step={.1}
                 max={1}
