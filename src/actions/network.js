@@ -174,8 +174,11 @@ export const updateContact = () => {
   return (dispatch, getState) => {
     const rootState = getState().root
     const contactEnabled = rootState.get('contactEnabled')
+    const rangeSliderValue = rootState.get('rangeSliderValue')
+    
     const data = {
-      contactEnabled: contactEnabled
+      contactEnabled: contactEnabled,
+      rangeSliderValue: rangeSliderValue
     }
     dispatch(updateContactStart())
     post(BACKEND_URL + '/updatecontact' + window.location.search, data)
