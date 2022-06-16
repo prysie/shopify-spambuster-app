@@ -171,7 +171,7 @@ export const ConnectedScriptInstalledView = (props) => {
               <Card.Section title='Tune reCAPTCHA V3'>
                 <RangeSlider
                 output
-                label="SPAM Threshold Value"
+                label="SPAM Score Threshold"
                 helpText="Select the appropriate reCAPTCHA V3 SPAM threshold used for rejecting comments"
                 min={0}
                 step={.1}
