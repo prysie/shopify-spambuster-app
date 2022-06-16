@@ -123,6 +123,10 @@ export const ConnectedScriptInstalledView = (props) => {
           <p>
             It returns a score for each request you send to reCAPTCHA and gives you more flexibility to fight against spam and abuse in your own way.
           </p>
+          <p>
+            reCAPTCHA V3 needs to adjust to the traffic on your individual site, this will take sometime during which you will continue to recive SPAM. 
+            Statistics on SPAM visits will update after a few days on the google recaptcha <a href='https://www.google.com/recaptcha/admin' target='_blank' rel='noopener noreferrer'>Dashboard</a> 
+          </p>
         </TextContainer>
       </Card>
 
