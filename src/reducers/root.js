@@ -60,12 +60,14 @@ const rootReducer = (state, action) => {
     case APPSTATUS_GET_DONE:
       state = state.set('hasScriptTag', action.payload.hasScriptTag)
       state = state.set('contactEnabled', action.payload.contactEnabled === true)
+      state = state.set('rangeSliderValue', action.payload.rangeSliderValue)
       state = state.set('enablementLink', 'https://' + action.payload.shop+ '/admin/themes/current/editor?context=apps' + '&template=' + '$' +'&activateAppId=' + 'bfbda1cf-d162-41f6-9fc1-6d7890aa3e54' + '/' + 'reCAPTCHA-spambuster'),
       state = state.set('isLoading', false)
       return state
     case INSTALL_GET_DONE:
       state = state.set('hasScriptTag', true)    
       state = state.set('contactEnabled', action.payload.contactEnabled === true)
+      state = state.set('rangeSliderValue', action.payload.rangeSliderValue)
       state = state.set('rcSiteKey', '')
       state = state.set('rcSiteSecret', '')
       state = state.set('isLoading', false)
