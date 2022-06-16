@@ -56,7 +56,7 @@ export const getAppStatusDone = (statusData) => {
     payload: {
       hasScriptTag: statusData.hasScriptTag,
       contactEnabled: statusData.contactEnabled,
-      rangeSliderValue: statusData.rangeSliderValue,
+      rangeSliderValue: statusData.spamThreshold,
       shop: statusData.shop
     }
   }
