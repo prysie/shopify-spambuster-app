@@ -1,0 +1,25 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "reCAPTCHA spambuster"
+client_id = "465a31b118d1bc3d462b08cffe33cbf5"
+application_url = "https://app.jola.com.au/build/prod"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [ "https://app.jola.com.au/build/prod/" ]
+
+[webhooks]
+api_version = "2022-10"
+
+  [webhooks.privacy_compliance]
+  customer_deletion_url = "https://qorqmyn3zb.execute-api.eu-west-1.amazonaws.com/prod/customersredact"
+  customer_data_request_url = "https://qorqmyn3zb.execute-api.eu-west-1.amazonaws.com/prod/customersdatarequest"
+  shop_deletion_url = "https://qorqmyn3zb.execute-api.eu-west-1.amazonaws.com/prod/shopredact"
+
+[pos]
+embedded = false
