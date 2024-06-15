@@ -23,8 +23,10 @@ import {
   GET_RECAPTCHA_SETTINGS_FAILURE,
   UPDATE_RECAPTCHA_SETTINGS_START,
   UPDATE_RECAPTCHA_SETTINGS_SUCCESS,
-  UPDATE_RECAPTCHA_SETTINGS_FAILURE
-} from '../constants.js'
+  UPDATE_RECAPTCHA_SETTINGS_FAILURE,
+  GET_RECAPTCHA_ACTIVITY_START,
+  GET_RECAPTCHA_ACTIVITY_SUCCESS,
+  GET_RECAPTCHA_ACTIVITY_FAILUR} from '../constants.js';
 
 // Fetch reCAPTCHA settings actions
 export const getRecaptchaSettingsStart = () => {
@@ -95,6 +97,29 @@ export const changeRecaptchaType = (type) => {
     }
   }
 }
+
+export const getRecaptchaActivityStart = () => {
+  return {
+    type: GET_RECAPTCHA_ACTIVITY_START,
+    payload: {},
+  };
+};
+
+export const getRecaptchaActivitySuccess = (activity) => {
+  return {
+    type: GET_RECAPTCHA_ACTIVITY_SUCCESS,
+    payload: activity,
+  };
+};
+
+export const getRecaptchaActivityFailure = (error) => {
+  return {
+    type: GET_RECAPTCHA_ACTIVITY_FAILURE,
+    payload: {
+      message: error,
+    },
+  };
+};
 // Explanation:
 // This function dispatches updateRecaptchaSettingsStart to indicate the start of the update.
 // It gathers the necessary data (including the reCAPTCHA type) from the state.
@@ -306,3 +331,15 @@ export const updateContact = () => {
       })
   }
 }
+export const getRecaptchaActivity = (startDate, endDate) => {
+  return (dispatch) => {
+    dispatch(getRecaptchaActivityStart());
+    get(BACKEND_URL + '/getRecaptchaActivity' + window.location.search, { startDate, endDate })
+      .then((json) => {
+        dispatch(getRecaptchaActivitySuccess(json.activity));
+      })
+      .catch((error) => {
+        dispatch(getRecaptchaActivityFailure('Could not fetch reCAPTCHA activity.'));
+      });
+  };
+};

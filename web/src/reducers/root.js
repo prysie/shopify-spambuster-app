@@ -29,8 +29,11 @@ import {
   GET_RECAPTCHA_SETTINGS_FAILURE,
   UPDATE_RECAPTCHA_SETTINGS_START,
   UPDATE_RECAPTCHA_SETTINGS_SUCCESS,
-  UPDATE_RECAPTCHA_SETTINGS_FAILURE
-} from '../constants.js'
+  UPDATE_RECAPTCHA_SETTINGS_FAILURE,
+  GET_RECAPTCHA_ACTIVITY_START,
+  GET_RECAPTCHA_ACTIVITY_SUCCESS,
+  GET_RECAPTCHA_ACTIVITY_FAILURE,
+} from '../constants.js';
 
 export const getInitialState = () => {
   return Map({
@@ -51,7 +54,10 @@ export const getInitialState = () => {
     errorMessageContact: '',
     enablementLink: '',
     showContactUpdateSuccess: false,
-    rangeSliderValue: .5
+    rangeSliderValue: .5,
+    recaptchaActivity: [],
+    isLoadingActivity: false,
+    activityError: '',
   })
 }
 
@@ -140,8 +146,18 @@ const rootReducer = (state, action) => {
     case UPDATE_RECAPTCHA_SETTINGS_FAILURE:
       state = state.set('isLoading', false)
       state = state.set('errorMessage', action.payload.message)
-      return state      
-    
+      return state
+    case GET_RECAPTCHA_ACTIVITY_START:
+      state = state.set('isLoadingActivity', true)
+      return state
+    case GET_RECAPTCHA_ACTIVITY_SUCCESS:
+      state = state.set('recaptchaActivity', action.payload)
+      state = state.set('isLoadingActivity', false)
+      return state
+    case GET_RECAPTCHA_ACTIVITY_FAILURE:
+      state = state.set('isLoadingActivity', false)
+      state = state.set('activityError', action.payload.message)
+      return state    
     default:
         return state
     }
