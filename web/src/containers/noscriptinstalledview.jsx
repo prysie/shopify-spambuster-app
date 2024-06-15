@@ -58,16 +58,16 @@ export const ConnectedNoScriptInstalledView = (props) => {
     <div>
       <TextContainer>
         <h1>Spambuster</h1>
-        <p>Please insert your reCAPTCHA keys. You can choose between reCAPTCHA v3 and Enterprise.</p>
+        <p>Please insert your reCAPTCHA Enterprise keys. This application now only supports reCAPTCHA Enterprise for new installs.</p>
         <p>
-          Learn more about the differences between reCAPTCHA v3 and Enterprise:
+          Learn more about the benefits of reCAPTCHA Enterprise:
           <ul>
-            <li><strong>reCAPTCHA v3:</strong> Detects abusive traffic without user interaction. Best for user experience but less secure against sophisticated bots.</li>
-            <li><strong>reCAPTCHA Enterprise:</strong> Offers enhanced security with options like adaptive risk analysis and managed service. Suitable for high-security needs.</li>
+            <li><strong>Enhanced Security:</strong> Offers adaptive risk analysis and managed service.</li>
+            <li><strong>Better Protection:</strong> Suitable for high-security needs.</li>
           </ul>
         </p>
         <p>
-          Register for a reCAPTCHA account and get your keys from <a href='https://www.google.com/recaptcha/admin/create' target='_blank' rel='noopener noreferrer'>Google reCAPTCHA Admin</a>.
+          Register for a reCAPTCHA Enterprise account and get your keys from <a href='https://www.google.com/recaptcha/admin/create' target='_blank' rel='noopener noreferrer'>Google reCAPTCHA Admin</a>.
         </p>
       </TextContainer>
       <Form onSubmit={handleInstall}>
