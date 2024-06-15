@@ -43,12 +43,7 @@ export const ConnectedMain = (props) => {
   return (
     <>
       <Page title='Spambuster'>
-        {/*continue to use the hasScriptTag property to support backward compatiability, it basically means isInstalled.*/}
-        {props.hasScriptTag === false ? (
-          <NoScriptInstalledView />
-        ) : (
-          <ScriptInstalledView recaptchaType={props.recaptchaType} />
-        )}
+        <ScriptInstalledView recaptchaType={props.recaptchaType} />
       </Page>
     </>
   )
