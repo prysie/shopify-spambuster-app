@@ -14,7 +14,7 @@ import {
 
 import ScriptInstalledView from './scriptinstalledview.jsx'
 
-export const mapStateToProps = (state, props) => {
+export const mapStateToProps = (state) => {
   return {
     isLoading: state.root.get('isLoading'),
     hasScriptTag: state.root.get('hasScriptTag'),
@@ -33,7 +33,7 @@ export const ConnectedMain = (props) => {
   useEffect(() => {
     props.getAppStatus()
     props.getRecaptchaSettings()
-  }, [])
+  }, [props])
 
   if (props.isLoading === true) {
     return (
