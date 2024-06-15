@@ -1,28 +1,19 @@
 import React from 'react';
 import { Card, FormLayout, DataTable, DatePicker } from '@shopify/polaris';
 
-export const statsTabContent = (props) => {
-  const handleStartDateChange = (date) => {
-    props.setStartDate(date);
-  };
-
-  const handleEndDateChange = (date) => {
-    props.setEndDate(date);
-  };
-
-  return (
+const statsTabContent = (props) => (
     <>
       <Card sectioned>
         <FormLayout>
           <FormLayout.Group>
             <DatePicker
               label="Start Date"
-              value={props.startDate}
+              value={startDate}
               onChange={handleStartDateChange}
             />
             <DatePicker
               label="End Date"
-              value={props.endDate}
+              value={endDate}
               onChange={handleEndDateChange}
             />
           </FormLayout.Group>
@@ -40,4 +31,21 @@ export const statsTabContent = (props) => {
       </Card>
     </>
   );
-};
+
+  return (
+    <Layout>
+      <Tabs
+        tabs={[
+          { id: 'settings', content: 'Settings' },
+          { id: 'stats', content: 'Stats' }
+        ]}
+        selected={selectedTab}
+        onSelect={handleTabChange}
+      >
+        <Card.Section>
+          {selectedTab === 0 ? settingsTabContent : statsTabContent(props)}
+        </Card.Section>
+      </Tabs>
+    </Layout>
+  );
+

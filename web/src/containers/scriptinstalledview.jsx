@@ -1,114 +1,116 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import {
-  Card,
-  Form,
-  FormLayout,
-  TextField,
-  Button,
-  Banner,
-  TextContainer,
-  Select,
-  Layout,
-  RangeSlider,
-  Tabs,
-  DataTable,
-  DatePicker,
+Card,
+Form,
+FormLayout,
+TextField,
+Button,
+Banner,
+TextContainer,
+Select,
+Layout,
+RangeSlider,
+Tabs,
+DataTable,
+DatePicker,
 } from '@shopify/polaris';
 
 import {
-  handleRcSiteKeyChange,
-  handleRcSiteSecretChange,
-  handleRangeSliderChange,
-  dismissError,
-  dismissSuccess,
-  dismissErrorContact,
-  dismissSuccessContact,
-  changeContact,
-  handleRecaptchaTypeChange
+handleRcSiteKeyChange,
+handleRcSiteSecretChange,
+handleRangeSliderChange,
+dismissError,
+dismissSuccess,
+dismissErrorContact,
+dismissSuccessContact,
+changeContact,
+handleRecaptchaTypeChange
 } from '../actions/interface.js'
 
 import {
-  updateContact,
-  update,
-  getRecaptchaSettings,
-  updateRecaptchaSettings,
-  changeRecaptchaType
+updateContact,
+update,
+getRecaptchaSettings,
+updateRecaptchaSettings,
+changeRecaptchaType
 } from '../actions/network.js'
 
 export const mapStateToProps = (state, props) => {
-  return {
-    rcSiteKey: state.root.get('rcSiteKey'),
-    rcSiteSecret: state.root.get('rcSiteSecret'),
-    errorMessage: state.root.get('errorMessage'),
-    showKeySecretUpdateSuccess: state.root.get('showKeySecretUpdateSuccess'),
-    recaptchaType: state.root.get('recaptchaType')
-  }
+return {
+  rcSiteKey: state.root.get('rcSiteKey'),
+  rcSiteSecret: state.root.get('rcSiteSecret'),
+  errorMessage: state.root.get('errorMessage'),
+  showKeySecretUpdateSuccess: state.root.get('showKeySecretUpdateSuccess'),
+  recaptchaType: state.root.get('recaptchaType'),
+  enablementLink: state.root.get('enablementLink'),
+  recaptchaActivity: state.root.get('recaptchaActivity')
+}
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return {
-    updateKeySecret: () => dispatch(update()),
-    dismissError: () => dispatch(dismissError()),
-    dismissSuccess: () => dispatch(dismissSuccess()),
-    handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
-    handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
-    changeRecaptchaType: (type) => dispatch(changeRecaptchaType(type)),
-    updateRecaptchaSettings: () => dispatch(updateRecaptchaSettings()),
-    getRecaptchaSettings: () => dispatch(getRecaptchaSettings())
-  }
+return {
+  updateKeySecret: () => dispatch(update()),
+  dismissError: () => dispatch(dismissError()),
+  dismissSuccess: () => dispatch(dismissSuccess()),
+  handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
+  handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
+  changeRecaptchaType: (type) => dispatch(changeRecaptchaType(type)),
+  updateRecaptchaSettings: () => dispatch(updateRecaptchaSettings()),
+  getRecaptchaSettings: () => dispatch(getRecaptchaSettings())
+}
 }
 
 export const ConnectedScriptInstalledView = (props) => {
-  const [showSecret, setShowSecret] = useState(false)
-  const [selectedTab, setSelectedTab] = useState(0);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+const [showSecret, setShowSecret] = useState(false);
+const [selectedTab, setSelectedTab] = useState(0);
+const [startDate, setStartDate] = useState(null);
+const [endDate, setEndDate] = useState(null);
 
-  const handleTabChange = (selectedTabIndex) => {
-    setSelectedTab(selectedTabIndex);
-  };
+const handleTabChange = (selectedTabIndex) => {
+  setSelectedTab(selectedTabIndex);
+};
 
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
-  };
+const handleStartDateChange = (date) => {
+  setStartDate(date);
+};
 
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-  };
+const handleEndDateChange = (date) => {
+  setEndDate(date);
+};
 
-  useEffect(() => {
-    props.getRecaptchaSettings()
-  }, [])
+useEffect(() => {
+  props.getRecaptchaSettings();
+}, []);
 
-  const handleUpdateKeySecret = () => {
-    props.updateKeySecret()
-  }
+const handleUpdateKeySecret = () => {
+  props.updateKeySecret();
+}
 
-  const handleDismissError = () => {
-    props.dismissError()
-  }
+const handleDismissError = () => {
+  props.dismissError();
+}
 
-  const handleDismissSuccess = () => {
-    props.dismissSuccess()
-  }
+const handleDismissSuccess = () => {
+  props.dismissSuccess();
+}
 
-  const handleRcSiteKeyChange = (value) => {
-    props.handleRcSiteKeyChange(value)
-  }
+const handleRcSiteKeyChange = (value) => {
+  props.handleRcSiteKeyChange(value);
+}
 
-  const handleRcSiteSecretChange = (value) => {
-    props.handleRcSiteSecretChange(value)
-  }
+const handleRcSiteSecretChange = (value) => {
+  props.handleRcSiteSecretChange(value);
+}
 
-  const handleRecaptchaTypeChange = (value) => {
-    props.changeRecaptchaType(value)
-    props.updateRecaptchaSettings()
-  }
+const handleRecaptchaTypeChange = (value) => {
+  props.changeRecaptchaType(value);
+  props.updateRecaptchaSettings();
+}
 
-  const toggleShowSecret = () => {
-    setShowSecret(!showSecret)
-  }
+const toggleShowSecret = () => {
+  setShowSecret(!showSecret);
+}
 
   const tabContent = [
     {
