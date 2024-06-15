@@ -1,20 +1,31 @@
 import React from 'react';
 import { Card, FormLayout, DataTable, DatePicker } from '@shopify/polaris';
 
-const statsTabContent = (props) => (
+export const statsTabContent = ({ startDate, endDate, setStartDate, setEndDate, recaptchaActivity }) => {
+  const handleStartDateChange = (value) => {
+    setStartDate(value);
+  };
+
+  const handleEndDateChange = (value) => {
+    setEndDate(value);
+  };
+
+  return (
     <>
       <Card sectioned>
         <FormLayout>
           <FormLayout.Group>
             <DatePicker
-              label="Start Date"
-              value={startDate}
+              month={new Date().getMonth()}
+              year={new Date().getFullYear()}
               onChange={handleStartDateChange}
+              selected={startDate}
             />
             <DatePicker
-              label="End Date"
-              value={endDate}
+              month={new Date().getMonth()}
+              year={new Date().getFullYear()}
               onChange={handleEndDateChange}
+              selected={endDate}
             />
           </FormLayout.Group>
         </FormLayout>
@@ -23,7 +34,7 @@ const statsTabContent = (props) => (
         <DataTable
           columnContentTypes={['text', 'text', 'text', 'numeric']}
           headings={['Timestamp', 'Action', 'Result', 'Score']}
-          rows={props.recaptchaActivity}
+          rows={recaptchaActivity}
         />
       </Card>
       <Card title="reCAPTCHA Activity Graph" sectioned>
@@ -31,21 +42,5 @@ const statsTabContent = (props) => (
       </Card>
     </>
   );
-
-  return (
-    <Layout>
-      <Tabs
-        tabs={[
-          { id: 'settings', content: 'Settings' },
-          { id: 'stats', content: 'Stats' }
-        ]}
-        selected={selectedTab}
-        onSelect={handleTabChange}
-      >
-        <Card.Section>
-          {selectedTab === 0 ? settingsTabContent : statsTabContent(props)}
-        </Card.Section>
-      </Tabs>
-    </Layout>
-  );
+};
 

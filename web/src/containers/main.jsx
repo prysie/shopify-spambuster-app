@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import {
   Page,
   Spinner
-} from '@shopify/polaris'
+} from '@shopify/polaris';
 
 import {
   getAppStatus,
   getRecaptchaSettings
-} from '../actions/network.js'
+} from '../actions/network.js';
 
-import ScriptInstalledView from './scriptinstalledview.jsx'
+import ScriptInstalledView from './scriptinstalledview.jsx';
 
 export const mapStateToProps = (state) => {
   return {
@@ -29,10 +29,13 @@ export const mapDispatchToProps = (dispatch) => {
 
 export const ConnectedMain = (props) => {
   useEffect(() => {
-    props.getAppStatus().then(() => {
-      props.getRecaptchaSettings();
-    });
-  }, [props]);
+    async function fetchData() {
+      await props.getAppStatus();
+      await props.getRecaptchaSettings();
+    }
+
+    fetchData();
+  }, []);
 
   if (props.isLoading) {
     return (
@@ -49,5 +52,5 @@ export const ConnectedMain = (props) => {
   )
 }
 
-const Main = connect(mapStateToProps, mapDispatchToProps)(ConnectedMain)
-export default Main
+const Main = connect(mapStateToProps, mapDispatchToProps)(ConnectedMain);
+export default Main;
