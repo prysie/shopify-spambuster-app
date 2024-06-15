@@ -120,13 +120,15 @@ export const ConnectedScriptInstalledView = (props) => {
     },
     {
       id: 'stats',
-      content: () => statsTabContent({
-        startDate,
-        endDate,
-        setStartDate,
-        setEndDate,
-        recaptchaActivity: props.recaptchaActivity,
-      }),
+      content: (
+        <statsTabContent
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+          recaptchaActivity={props.recaptchaActivity}
+        />
+      ),
     },
   ];
 
@@ -139,7 +141,7 @@ export const ConnectedScriptInstalledView = (props) => {
       </Tabs>
     </Layout>
   );
-};
+}
 
 const ScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ConnectedScriptInstalledView)
 export default ScriptInstalledView
