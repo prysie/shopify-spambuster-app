@@ -10,7 +10,6 @@ import {
   getRecaptchaSettings
 } from '../actions/network.js'
 
-import NoScriptInstalledView from './noscriptinstalledview.jsx'
 import ScriptInstalledView from './scriptinstalledview.jsx'
 
 export const mapStateToProps = (state, props) => {
