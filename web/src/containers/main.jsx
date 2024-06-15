@@ -1,3 +1,5 @@
+import { settingsTabContent } from './settingsTabContent.jsx';
+import { statsTabContent } from './statsTabContent.jsx';
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
