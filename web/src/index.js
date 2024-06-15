@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime'; // Add this line at the top
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
