@@ -87,6 +87,14 @@ export const getRecaptchaSettings = () => {
   }
 }
 
+export const changeRecaptchaType = (type) => {
+  return {
+    type: RECAPTCHA_TYPE_CHANGE,
+    payload: {
+      recaptchaType: type
+    }
+  }
+}
 // Explanation:
 // This function dispatches updateRecaptchaSettingsStart to indicate the start of the update.
 // It gathers the necessary data (including the reCAPTCHA type) from the state.
