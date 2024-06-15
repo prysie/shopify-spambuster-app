@@ -6,7 +6,8 @@ import {
 } from '@shopify/polaris'
 
 import {
-  getAppStatus
+  getAppStatus,
+  getRecaptchaSettings
 } from '../actions/network.js'
 
 import NoScriptInstalledView from './noscriptinstalledview.jsx'
@@ -15,19 +16,22 @@ import ScriptInstalledView from './scriptinstalledview.jsx'
 export const mapStateToProps = (state, props) => {
   return {
     isLoading: state.root.get('isLoading'),
-    hasScriptTag: state.root.get('hasScriptTag')
+    hasScriptTag: state.root.get('hasScriptTag'),
+    recaptchaType: state.root.get('recaptchaType')
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    getAppStatus: () => dispatch(getAppStatus())
+    getAppStatus: () => dispatch(getAppStatus()),
+    getRecaptchaSettings: () => dispatch(getRecaptchaSettings())
   }
 }
 
 export const ConnectedMain = (props) => {
   useEffect(() => {
     props.getAppStatus()
+    props.getRecaptchaSettings()
   }, [])
 
   if (props.isLoading === true) {
@@ -43,7 +47,7 @@ export const ConnectedMain = (props) => {
         {props.hasScriptTag === false ? (
           <NoScriptInstalledView />
         ) : (
-          <ScriptInstalledView />
+          <ScriptInstalledView recaptchaType={props.recaptchaType} />
         )}
       </Page>
     </>

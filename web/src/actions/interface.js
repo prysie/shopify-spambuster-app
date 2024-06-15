@@ -8,7 +8,9 @@ import {
 
   CONTACT_ERROR_DISMISS,
   CONTACT_SUCCESS_DISMISS,
-  CHANGE_CONTACT
+  CHANGE_CONTACT,
+  RECAPTCHA_TYPE_CHANGE 
+  
 } from '../constants.js'
 
 export const handleRcSiteKeyChange = (value) => {
@@ -71,6 +73,15 @@ export const changeContact = (newChecked) => {
     type: CHANGE_CONTACT,
     payload: {
       newChecked: newChecked
+    }
+  }
+}
+
+export const handleRecaptchaTypeChange = (value) => {
+  return {
+    type: RECAPTCHA_TYPE_CHANGE,
+    payload: {
+      value: value
     }
   }
 }

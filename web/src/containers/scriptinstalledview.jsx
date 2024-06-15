@@ -12,7 +12,8 @@ import {
   TextContainer,
   Checkbox,
   VideoThumbnail,
-  RangeSlider
+  RangeSlider,
+  Select
 } from '@shopify/polaris'
 
 import {
@@ -23,11 +24,12 @@ import {
   dismissSuccess,
   dismissErrorContact,
   dismissSuccessContact,
-  changeContact
+  changeContact,
+  handleRecaptchaTypeChange
 } from '../actions/interface.js'
 import {
-  update,
-  updateContact
+  changeRecaptchaType,
+  updateRecaptchaSettings
 } from '../actions/network.js'
 import youtubetn from '../images/youthumb_reCAPTC.png'
 
@@ -41,7 +43,8 @@ export const mapStateToProps = (state, props) => {
     errorMessageContact: state.root.get('errorMessageContact'),
     showContactUpdateSuccess: state.root.get('showContactUpdateSuccess'),
     enablementLink: state.root.get('enablementLink'),
-    rangeSliderValue: state.root.get('rangeSliderValue')
+    rangeSliderValue: state.root.get('rangeSliderValue'),
+    recaptchaType: state.root.get('recaptchaType')
   }
 }
 
@@ -57,7 +60,10 @@ export const mapDispatchToProps = (dispatch) => {
     handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
     handleEnablementLink: (enablementLink) => dispatch(handleEnablementLink(enablementLink)),
-    handleRangeSliderChange: (newValue) => dispatch(handleRangeSliderChange(newValue))
+    handleRangeSliderChange: (newValue) => dispatch(handleRangeSliderChange(newValue)),
+    changeRecaptchaType: (type) => dispatch(changeRecaptchaType(type)),
+    updateRecaptchaSettings: () => dispatch(updateRecaptchaSettings()),
+    handleRecaptchaTypeChange: (value) => dispatch(handleRecaptchaTypeChange(value))
   }
 }
 
@@ -102,7 +108,13 @@ export const ConnectedScriptInstalledView = (props) => {
   const handleRangeSliderChange = (newValue) => {
     props.handleRangeSliderChange(newValue)
   }
-  return (
+
+  const handleRecaptchaTypeChange = (value) => {
+    props.changeRecaptchaType(value)
+    props.updateRecaptchaSettings()
+  }
+
+    return (
     <>      
     <Card sectioned title="Enable ReCAPTCHA spambuster">
       <TextContainer title='Enable ReCAPTCHA spambuster'>
@@ -129,7 +141,6 @@ export const ConnectedScriptInstalledView = (props) => {
           </p>
         </TextContainer>
       </Card>
-
 
       <Card sectioned title="Blog comments forms">
         <TextContainer>
@@ -220,6 +231,15 @@ export const ConnectedScriptInstalledView = (props) => {
                 value={props.rcSiteSecret}
                 onChange={handleRcSiteSecretChange}
                 label='reCAPTCHA secret key'
+              />
+              <Select
+                label="ReCAPTCHA Type"
+                options={[
+                  { label: 'ReCAPTCHA v3', value: 'v3' },
+                  { label: 'ReCAPTCHA Enterprise', value: 'enterprise' }
+                ]}
+                value={props.recaptchaType}
+                onChange={handleRecaptchaTypeChange}
               />
               <Button submit>Update</Button>
             </FormLayout>

@@ -22,7 +22,14 @@ import {
 
   NETWORK_WARNING_SHOW_CONTACT,
   CONTACT_ERROR_DISMISS,
-  CONTACT_SUCCESS_DISMISS
+  CONTACT_SUCCESS_DISMISS,
+
+  GET_RECAPTCHA_SETTINGS_START,
+  GET_RECAPTCHA_SETTINGS_SUCCESS,
+  GET_RECAPTCHA_SETTINGS_FAILURE,
+  UPDATE_RECAPTCHA_SETTINGS_START,
+  UPDATE_RECAPTCHA_SETTINGS_SUCCESS,
+  UPDATE_RECAPTCHA_SETTINGS_FAILURE
 } from '../constants.js'
 
 export const getInitialState = () => {
@@ -33,6 +40,8 @@ export const getInitialState = () => {
 
     rcSiteKey: '',
     rcSiteSecret: '',
+
+    recaptchaType: 'v3',
 
     errorMessage: '',
     showKeySecretUpdateSuccess: false,
@@ -114,8 +123,28 @@ const rootReducer = (state, action) => {
     case CONTACT_SUCCESS_DISMISS:
       state = state.set('showContactUpdateSuccess', false)
       return state
+    case GET_RECAPTCHA_SETTINGS_SUCCESS:
+      state = state.set('isLoading', false)
+      state = state.set('rcSiteKey', action.payload.rcSiteKey)
+      state = state.set('rcSiteSecret', action.payload.rcSiteSecret)
+      state = state.set('recaptchaType', action.payload.recaptchaType) // Handle new recaptcha type
+      return state
+    case GET_RECAPTCHA_SETTINGS_FAILURE:
+      state = state.set('isLoading', false)
+      state = state.set('errorMessage', action.payload.message)
+      return state
+    case UPDATE_RECAPTCHA_SETTINGS_SUCCESS:
+      state = state.set('isLoading', false)
+      state = state.set('showKeySecretUpdateSuccess', true)
+      return state
+    case UPDATE_RECAPTCHA_SETTINGS_FAILURE:
+      state = state.set('isLoading', false)
+      state = state.set('errorMessage', action.payload.message)
+      return state      
+    
+    default:
+        return state
+    }
   }
-  return state
-}
-
-export default rootReducer
+  
+  export default rootReducer

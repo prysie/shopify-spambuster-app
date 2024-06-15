@@ -23,3 +23,16 @@ export const CONTACT_ERROR_DISMISS = 'CONTACT_ERROR_DISMISS'
 export const CONTACT_SUCCESS_DISMISS = 'CONTACT_SUCCESS_DISMISS'
 export const CHANGE_CONTACT = 'CHANGE_CONTACT'
 export const RANGE_SLIDER_CHANGE = 'RANGE_SLIDER_CHANGE'
+// Indicates the start of fetching reCAPTCHA settings.
+export const GET_RECAPTCHA_SETTINGS_START = 'GET_RECAPTCHA_SETTINGS_START'
+// Indicates the successful fetching of reCAPTCHA settings.
+export const GET_RECAPTCHA_SETTINGS_SUCCESS = 'GET_RECAPTCHA_SETTINGS_SUCCESS'
+// Indicates the failure to fetch reCAPTCHA settings.
+export const GET_RECAPTCHA_SETTINGS_FAILURE = 'GET_RECAPTCHA_SETTINGS_FAILURE'
+// Indicates the start of updating reCAPTCHA settings.
+export const UPDATE_RECAPTCHA_SETTINGS_START = 'UPDATE_RECAPTCHA_SETTINGS_START'
+// Indicates the successful updating of reCAPTCHA settings.
+export const UPDATE_RECAPTCHA_SETTINGS_SUCCESS = 'UPDATE_RECAPTCHA_SETTINGS_SUCCESS'
+// Indicates the failure to update reCAPTCHA settings.
+export const UPDATE_RECAPTCHA_SETTINGS_FAILURE = 'UPDATE_RECAPTCHA_SETTINGS_FAILURE'
+export const RECAPTCHA_TYPE_CHANGE = 'RECAPTCHA_TYPE_CHANGE'
