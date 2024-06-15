@@ -1,5 +1,3 @@
-import { settingsTabContent } from './settingsTabContent.jsx';
-import { statsTabContent } from './statsTabContent.jsx';
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
@@ -31,11 +29,12 @@ export const mapDispatchToProps = (dispatch) => {
 
 export const ConnectedMain = (props) => {
   useEffect(() => {
-    props.getAppStatus()
-    props.getRecaptchaSettings()
-  }, [props])
+    props.getAppStatus().then(() => {
+      props.getRecaptchaSettings();
+    });
+  }, [props]);
 
-  if (props.isLoading === true) {
+  if (props.isLoading) {
     return (
       <Spinner accessibilityLabel='Spinner example' size='large' color='teal' />
     )
