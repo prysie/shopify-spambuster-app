@@ -7,6 +7,7 @@ import {
   TextField,
   Button,
   Banner,
+  Layout,
   TextContainer
 } from '@shopify/polaris'
 
