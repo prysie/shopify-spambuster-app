@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, FormLayout, DataTable, DatePicker } from '@shopify/polaris';
 
-export const statsTabContent = ({ startDate, endDate, setStartDate, setEndDate, recaptchaActivity }) => {
+const StatsTabContent = ({ startDate, endDate, setStartDate, setEndDate, recaptchaActivity }) => {
   const handleStartDateChange = (value) => {
     setStartDate(value);
   };
@@ -48,4 +48,4 @@ export const statsTabContent = ({ startDate, endDate, setStartDate, setEndDate, 
     </>
   );
 };
-
+export default StatsTabContent

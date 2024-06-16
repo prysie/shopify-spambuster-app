@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Layout, TextContainer, Form, FormLayout, TextField, Button, Select, Banner } from '@shopify/polaris';
 
-export const settingsTabContent = ({
+const SettingsTabContent = ({
   rcSiteKey,
   rcSiteSecret,
   errorMessage,
@@ -108,3 +108,4 @@ export const settingsTabContent = ({
     </Layout.Section>
   </>
 );
+export default SettingsTabContent

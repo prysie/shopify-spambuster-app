@@ -2,31 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import {
   Card,
-  Form,
-  FormLayout,
-  TextField,
-  Button,
-  Banner,
-  TextContainer,
-  Select,
   Layout,
-  RangeSlider,
   Tabs,
-  DataTable,
-  DatePicker,
 } from '@shopify/polaris';
 
 import {
   handleRcSiteKeyChange,
   handleRcSiteSecretChange,
-  handleRangeSliderChange,
   dismissError,
   dismissSuccess,
-  dismissErrorContact,
-  dismissSuccessContact,
-  changeContact,
-  handleRecaptchaTypeChange // Ensure correct import
-} from '../actions/interface.js'
+  handleRecaptchaTypeChange
+} from '../actions/interface.js';
 
 import {
   updateContact,
@@ -34,12 +20,12 @@ import {
   getRecaptchaSettings,
   updateRecaptchaSettings,
   changeRecaptchaType
-} from '../actions/network.js'
+} from '../actions/network.js';
 
-import { settingsTabContent } from './settingsTabContent.jsx';
-import { statsTabContent } from './statsTabContent.jsx';
+import SettingsTabContent from './settingsTabContent.jsx';
+import StatsTabContent from './statsTabContent.jsx';
 
-export const mapStateToProps = (state, props) => {
+export const mapStateToProps = (state) => {
   return {
     rcSiteKey: state.root.get('rcSiteKey'),
     rcSiteSecret: state.root.get('rcSiteSecret'),
@@ -57,14 +43,14 @@ export const mapDispatchToProps = (dispatch) => {
     dismissSuccess: () => dispatch(dismissSuccess()),
     handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
-    handleRecaptchaTypeChange: (type) => dispatch(handleRecaptchaTypeChange(type)), // Use correct function
+    handleRecaptchaTypeChange: (type) => dispatch(handleRecaptchaTypeChange(type)),
     updateRecaptchaSettings: () => dispatch(updateRecaptchaSettings()),
     getRecaptchaSettings: () => dispatch(getRecaptchaSettings())
   }
 }
 
 export const ConnectedScriptInstalledView = (props) => {
-  const [showSecret, setShowSecret] = useState(false)
+  const [showSecret, setShowSecret] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -82,84 +68,86 @@ export const ConnectedScriptInstalledView = (props) => {
   };
 
   useEffect(() => {
-    props.getRecaptchaSettings()
-  }, [])
+    props.getRecaptchaSettings();
+  }, []);
 
   const handleUpdateKeySecret = () => {
-    props.updateKeySecret()
-  }
+    props.updateKeySecret();
+  };
 
   const handleDismissError = () => {
-    props.dismissError()
-  }
+    props.dismissError();
+  };
 
   const handleDismissSuccess = () => {
-    props.dismissSuccess()
-  }
+    props.dismissSuccess();
+  };
 
   const handleRcSiteKeyChange = (value) => {
-    props.handleRcSiteKeyChange(value)
-  }
+    props.handleRcSiteKeyChange(value);
+  };
 
   const handleRcSiteSecretChange = (value) => {
-    props.handleRcSiteSecretChange(value)
-  }
+    props.handleRcSiteSecretChange(value);
+  };
 
   const handleRecaptchaTypeChange = (value) => {
-    props.handleRecaptchaTypeChange(value); // Use correct function
+    props.handleRecaptchaTypeChange(value);
     props.updateRecaptchaSettings();
-  }
+  };
 
   const toggleShowSecret = () => {
-    setShowSecret(!showSecret)
-  }
+    setShowSecret(!showSecret);
+  };
 
-  const tabContent = [
+  const tabs = [
     {
       id: 'settings',
-      content: (
-        <settingsTabContent
-          rcSiteKey={props.rcSiteKey}
-          rcSiteSecret={props.rcSiteSecret}
-          errorMessage={props.errorMessage}
-          showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
-          enablementLink={props.enablementLink}
-          showSecret={showSecret}
-          toggleShowSecret={toggleShowSecret}
-          handleUpdateKeySecret={handleUpdateKeySecret}
-          handleDismissError={handleDismissError}
-          handleDismissSuccess={handleDismissSuccess}
-          handleRcSiteKeyChange={handleRcSiteKeyChange}
-          handleRcSiteSecretChange={handleRcSiteSecretChange}
-          handleRecaptchaTypeChange={handleRecaptchaTypeChange}
-          recaptchaType={props.recaptchaType}
-        />
-      ),
+      content: 'Settings',
+      panelID: 'settings-panel',
     },
     {
       id: 'stats',
-      content: (
-        <statsTabContent
-          startDate={startDate}
-          endDate={endDate}
-          setStartDate={setStartDate}
-          setEndDate={setEndDate}
-          recaptchaActivity={props.recaptchaActivity}
-        />
-      ),
+      content: 'Stats',
+      panelID: 'stats-panel',
     },
   ];
 
   return (
     <Layout>
-    <Tabs tabs={tabContent} selected={selectedTab} onSelect={handleTabChange}>
-      <Card.Section title={tabContent[selectedTab].id}>
-        {tabContent[selectedTab].content}
-      </Card.Section>
-    </Tabs>
+      <Tabs tabs={tabs} selected={selectedTab} onSelect={handleTabChange}>
+        <Card.Section title={tabs[selectedTab].content}>
+          {selectedTab === 0 ? (
+            <SettingsTabContent
+              rcSiteKey={props.rcSiteKey}
+              rcSiteSecret={props.rcSiteSecret}
+              errorMessage={props.errorMessage}
+              showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
+              enablementLink={props.enablementLink}
+              showSecret={showSecret}
+              toggleShowSecret={toggleShowSecret}
+              handleUpdateKeySecret={handleUpdateKeySecret}
+              handleDismissError={handleDismissError}
+              handleDismissSuccess={handleDismissSuccess}
+              handleRcSiteKeyChange={handleRcSiteKeyChange}
+              handleRcSiteSecretChange={handleRcSiteSecretChange}
+              handleRecaptchaTypeChange={handleRecaptchaTypeChange}
+              recaptchaType={props.recaptchaType}
+            />
+          ) : (
+            <StatsTabContent
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+              recaptchaActivity={props.recaptchaActivity}
+            />
+          )}
+        </Card.Section>
+      </Tabs>
     </Layout>
   );
-}
+};
 
-const ScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ConnectedScriptInstalledView)
-export default ScriptInstalledView
+const ScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ConnectedScriptInstalledView);
+export default ScriptInstalledView;
