@@ -43,7 +43,11 @@ export const getRecaptchaSettingsStart = () => {
 export const getRecaptchaSettingsSuccess = (settings) => {
   return {
     type: GET_RECAPTCHA_SETTINGS_SUCCESS,
-    payload: settings
+    payload: {
+      rcSiteKey: settings.rcSiteKey || '', // Provide a default value if not present
+      rcSiteSecret: settings.rcSiteSecret || '', // Provide a default value if not present
+      // ...
+    }
   }
 }
 

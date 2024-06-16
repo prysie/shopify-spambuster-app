@@ -165,6 +165,12 @@ const rootReducer = (state, action) => {
       state = state.set('recaptchaActivity', action.payload)
       state = state.set('isLoadingActivity', false)
       return state
+    case GET_RECAPTCHA_SETTINGS_START:
+      state = state.set('isLoading', true);
+      return state;
+    case UPDATE_RECAPTCHA_SETTINGS_START:
+      state = state.set('isLoading', true);
+      return state;      
     case GENERATE_RECAPTCHA_CREDENTIALS_START:
       state = state.set('isLoading', true);
       return state;
