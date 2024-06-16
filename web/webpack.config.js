@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
         publicPath: '/'
       },
       output: {
-        filename: '[name]-bundle-prod.js',
+        filename: 'spambuster-bundle-prod.js',
         path: path.resolve(__dirname, 'build/prod'),
         publicPath: '/'
       },
@@ -64,7 +64,7 @@ module.exports = (env, argv) => {
       ],
       mode: 'development',
       output: {
-        filename: '[name]-bundle-dev.js',
+        filename: 'spambuster-bundle-dev.js',
         path: path.resolve(__dirname, 'build/dev'),
         publicPath: '/'
       },
