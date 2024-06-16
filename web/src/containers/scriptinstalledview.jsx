@@ -116,7 +116,24 @@ export const ConnectedScriptInstalledView = (props) => {
   const tabContent = [
     {
       id: 'settings',
-      content: settingsTabContent,
+      content: (
+        <settingsTabContent
+          rcSiteKey={props.rcSiteKey}
+          rcSiteSecret={props.rcSiteSecret}
+          errorMessage={props.errorMessage}
+          showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
+          enablementLink={props.enablementLink}
+          showSecret={showSecret}
+          toggleShowSecret={toggleShowSecret}
+          handleUpdateKeySecret={handleUpdateKeySecret}
+          handleDismissError={handleDismissError}
+          handleDismissSuccess={handleDismissSuccess}
+          handleRcSiteKeyChange={handleRcSiteKeyChange}
+          handleRcSiteSecretChange={handleRcSiteSecretChange}
+          handleRecaptchaTypeChange={handleRecaptchaTypeChange}
+          recaptchaType={props.recaptchaType}
+        />
+      ),
     },
     {
       id: 'stats',
@@ -134,11 +151,11 @@ export const ConnectedScriptInstalledView = (props) => {
 
   return (
     <Layout>
-      <Tabs tabs={tabContent} selected={selectedTab} onSelect={handleTabChange}>
-        <Card.Section title={tabContent[selectedTab].id}>
-          {tabContent[selectedTab].content}
-        </Card.Section>
-      </Tabs>
+    <Tabs tabs={tabContent} selected={selectedTab} onSelect={handleTabChange}>
+      <Card.Section title={tabContent[selectedTab].id}>
+        {tabContent[selectedTab].content}
+      </Card.Section>
+    </Tabs>
     </Layout>
   );
 }
