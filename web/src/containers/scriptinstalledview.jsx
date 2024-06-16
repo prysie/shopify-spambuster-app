@@ -44,7 +44,7 @@ export const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export const ConnectedScriptInstalledView = (props) => {
+const ScriptInstalledView = (props) => {
   const [showSecret, setShowSecret] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
   const [startDate, setStartDate] = useState(null);
@@ -147,5 +147,5 @@ export const ConnectedScriptInstalledView = (props) => {
   );
 };
 
-const ScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ConnectedScriptInstalledView);
-export default ScriptInstalledView;
+const ConnectedScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ScriptInstalledView);
+export default ConnectedScriptInstalledView;
