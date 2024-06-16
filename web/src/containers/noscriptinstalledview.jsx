@@ -17,7 +17,7 @@ import {
 } from '../actions/interface.js'
 import {
     install,
-    registerCredentials
+    generateRecaptchaCredentials
   } from '../actions/network.js'
 
 export const mapStateToProps = (state, props) => {
@@ -34,7 +34,7 @@ export const mapDispatchToProps = (dispatch) => {
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
     install: () => dispatch(install()),
     dismissError: () => dispatch(dismissError()),
-    registerCredentials: () => dispatch(registerCredentials())
+    registerCredentials: () => dispatch(generateRecaptchaCredentials())
   }
 }
 
@@ -52,36 +52,44 @@ export const ConnectedNoScriptInstalledView = (props) => {
   }
 
   return (
-    <Card sectioned>
-      <TextContainer>
-        <p>
-          Please insert your reCAPTCHA Enterprise keys. IMPORTANT: This application only supports Enterprise.
-        </p>
-      </TextContainer>
-      {props.errorMessage !== '' ? (
-        <Card.Section>
-          <Banner onDismiss={handleDismissError} status='critical'>
-            <p>{props.errorMessage}</p>
-          </Banner>
-        </Card.Section>
-      ) : null}
-      <Form onSubmit={handleSubmit}>
-        <FormLayout>
-          <TextField
-            value={props.rcSiteKey}
-            onChange={props.handleRcSiteKeyChange}
-            label='reCAPTCHA site key'
-          />
-          <TextField
-            value={props.rcSiteSecret}
-            onChange={props.handleRcSiteSecretChange}
-            label='reCAPTCHA secret key'
-          />
-          <Button submit>Install Spambuster</Button>
-        </FormLayout>
-      </Form>
-      <Button onClick={handleRegisterCredentials}>Register for Credentials</Button>
-    </Card>
+    <Layout>
+        <Layout.Section>
+        <Card sectioned>
+            <TextContainer>
+            <p>
+                Please insert your reCAPTCHA Enterprise keys. IMPORTANT: This application only supports Enterprise.
+            </p>
+            </TextContainer>
+            {props.errorMessage !== '' ? (
+            <Card.Section>
+                <Banner onDismiss={handleDismissError} status='critical'>
+                <p>{props.errorMessage}</p>
+                </Banner>
+            </Card.Section>
+            ) : null}
+            <Form onSubmit={handleSubmit}>
+            <FormLayout>
+                <TextField
+                value={props.rcSiteKey}
+                onChange={props.handleRcSiteKeyChange}
+                label='reCAPTCHA site key'
+                />
+                <TextField
+                value={props.rcSiteSecret}
+                onChange={props.handleRcSiteSecretChange}
+                label='reCAPTCHA secret key'
+                />
+                <Button submit>Install Spambuster</Button>
+            </FormLayout>
+            </Form>
+        </Card>
+        </Layout.Section>
+        <Layout.Section secondary>
+        <Card sectioned>
+            <Button primary onClick={handleRegisterCredentials}>Register for Credentials</Button>
+        </Card>
+        </Layout.Section>
+    </Layout>
   )
 }
 
