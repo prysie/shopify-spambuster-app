@@ -26,7 +26,7 @@ import {
   UPDATE_RECAPTCHA_SETTINGS_FAILURE,
   GET_RECAPTCHA_ACTIVITY_START,
   GET_RECAPTCHA_ACTIVITY_SUCCESS,
-  GET_RECAPTCHA_ACTIVITY_FAILUR} from '../constants.js';
+  GET_RECAPTCHA_ACTIVITY_FAILURE} from '../constants.js';
 
 // Fetch reCAPTCHA settings actions
 export const getRecaptchaSettingsStart = () => {

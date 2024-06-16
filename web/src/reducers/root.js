@@ -158,6 +158,10 @@ const rootReducer = (state, action) => {
       state = state.set('isLoadingActivity', false)
       state = state.set('activityError', action.payload.message)
       return state    
+    case GET_RECAPTCHA_ACTIVITY_SUCCESS:
+      state = state.set('recaptchaActivity', action.payload)
+      state = state.set('isLoadingActivity', false)
+      return state      
     default:
         return state
     }

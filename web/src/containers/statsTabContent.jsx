@@ -32,9 +32,14 @@ export const statsTabContent = ({ startDate, endDate, setStartDate, setEndDate, 
       </Card>
       <Card title="reCAPTCHA Activity Blotter" sectioned>
         <DataTable
-          columnContentTypes={['text', 'text', 'text', 'numeric']}
-          headings={['Timestamp', 'Action', 'Result', 'Score']}
-          rows={recaptchaActivity}
+            columnContentTypes={['text', 'text', 'text', 'numeric']}
+            headings={['Timestamp', 'Action', 'Result', 'Score']}
+            rows={recaptchaActivity.map(activity => [
+                activity.timestamp,
+                activity.action,
+                activity.result,
+                activity.score,
+            ])}
         />
       </Card>
       <Card title="reCAPTCHA Activity Graph" sectioned>

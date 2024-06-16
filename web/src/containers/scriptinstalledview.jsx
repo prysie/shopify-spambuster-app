@@ -45,7 +45,8 @@ export const mapStateToProps = (state, props) => {
     rcSiteSecret: state.root.get('rcSiteSecret'),
     errorMessage: state.root.get('errorMessage'),
     showKeySecretUpdateSuccess: state.root.get('showKeySecretUpdateSuccess'),
-    recaptchaType: state.root.get('recaptchaType')
+    recaptchaType: state.root.get('recaptchaType'),
+    recaptchaActivity: state.root.get('recaptchaActivity'),
   }
 }
 
