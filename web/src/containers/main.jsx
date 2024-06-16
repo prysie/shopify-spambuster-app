@@ -1,66 +1,54 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Page, Spinner } from '@shopify/polaris';
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import {
+  Page,
+  Spinner
+} from '@shopify/polaris'
 
-import { getAppStatus, getRecaptchaSettings } from '../actions/network.js';
+import {
+  getAppStatus
+} from '../actions/network.js'
 
-import ScriptInstalledView from './scriptinstalledview';
+import NoScriptInstalledView from './noscriptinstalledview.jsx'
+import ScriptInstalledView from './scriptinstalledview.jsx'
 
-export const mapStateToProps = (state) => {
-  console.log('main.jsx - mapStateToProps - state.root:', state.root);
+export const mapStateToProps = (state, props) => {
   return {
     isLoading: state.root.get('isLoading'),
-    hasScriptTag: state.root.get('hasScriptTag'),
-    recaptchaType: state.root.get('recaptchaType'),
-    rcSiteKey: state.root.get('rcSiteKey'),
-    rcSiteSecret: state.root.get('rcSiteSecret'),
-    errorMessage: state.root.get('errorMessage'),
-    showKeySecretUpdateSuccess: state.root.get('showKeySecretUpdateSuccess'),
-    enablementLink: state.root.get('enablementLink'),
-    recaptchaActivity: state.root.get('recaptchaActivity'),
-  };
+    hasScriptTag: state.root.get('hasScriptTag')
+  }
 }
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    getAppStatus: () => dispatch(getAppStatus()),
-    getRecaptchaSettings: () => dispatch(getRecaptchaSettings())
-  };
+    getAppStatus: () => dispatch(getAppStatus())
+  }
 }
 
 export const ConnectedMain = (props) => {
   useEffect(() => {
-    async function fetchData() {
-      await props.getAppStatus();
-      await props.getRecaptchaSettings();
-      console.log('ConnectedMain - props:', props);
-    }
+    props.getAppStatus()
+  }, [])
 
-    fetchData();
-  }, [props]);
-
-  if (props.isLoading) {
+  if (props.isLoading === true) {
     return (
       <Spinner accessibilityLabel='Spinner example' size='large' color='teal' />
-    );
+    )
   }
 
   return (
     <>
       <Page title='Spambuster'>
-        <ScriptInstalledView
-          recaptchaType={props.recaptchaType}
-          rcSiteKey={props.rcSiteKey}
-          rcSiteSecret={props.rcSiteSecret}
-          errorMessage={props.errorMessage}
-          showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
-          enablementLink={props.enablementLink}
-          recaptchaActivity={props.recaptchaActivity}
-        />
+        {/*continue to use the hasScriptTag property to support backward compatiability, it basically means isInstalled.*/}
+        {props.hasScriptTag === false ? (
+          <NoScriptInstalledView />
+        ) : (
+          <ScriptInstalledView />
+        )}
       </Page>
     </>
-  );
+  )
 }
 
-const Main = connect(mapStateToProps, mapDispatchToProps)(ConnectedMain);
-export default Main;
+const Main = connect(mapStateToProps, mapDispatchToProps)(ConnectedMain)
+export default Main
