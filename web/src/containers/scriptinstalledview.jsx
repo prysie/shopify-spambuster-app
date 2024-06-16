@@ -16,8 +16,8 @@ import {
   updateRecaptchaSettings
 } from '../actions/network.js';
 
-import SettingsTabContent from './settingsTabContent.jsx';
-import StatsTabContent from './statsTabContent.jsx';
+import SettingsTabContent from './settingsTabContent';
+import StatsTabContent from './statsTabContent';
 
 export const mapStateToProps = (state, props) => {
   return {

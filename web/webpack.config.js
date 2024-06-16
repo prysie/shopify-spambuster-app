@@ -4,6 +4,9 @@ const TerserPlugin = require('terser-webpack-plugin')
 module.exports = (env, argv) => {
   if (argv.mode === 'production') {
     return {
+      resolve: {
+        extensions: ['.js', '.jsx'],
+      },
       context: path.resolve(__dirname, 'src'),
       entry: [
         './index.js'
@@ -58,6 +61,9 @@ module.exports = (env, argv) => {
     }
   } else {
     return {
+      resolve: {
+        extensions: ['.js', '.jsx'],
+      },
       context: path.resolve(__dirname, 'src'),
       entry: [
         './index.js'
