@@ -370,12 +370,12 @@ export const getRecaptchaActivity = (startDate, endDate) => {
 export const generateRecaptchaCredentials = () => {
   return (dispatch) => {
     dispatch(generateRecaptchaCredentialsStart());
-    post(BACKEND_URL + '/generateRecaptchaCredentials' + window.location.search)
+    post(BACKEND_URL + '/createRecaptchaCredentials' + window.location.search)
       .then(json => {
         dispatch(generateRecaptchaCredentialsSuccess(json.rcSiteKey, json.rcSiteSecret));
       })
       .catch(error => {
-        dispatch(generateRecaptchaCredentialsFailure('Could not generate reCAPTCHA credentials.'));
+        dispatch(generateRecaptchaCredentialsFailure('Could not generate new reCAPTCHA credentials.'));
       });
   };
 };
