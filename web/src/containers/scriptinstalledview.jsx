@@ -44,7 +44,7 @@ export const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ScriptInstalledView = (props) => {
+const ScriptInstalledView = ({ props }) => {
   const [showSecret, setShowSecret] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
   const [startDate, setStartDate] = useState(null);
