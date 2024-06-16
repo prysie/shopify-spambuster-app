@@ -13,6 +13,7 @@ import {
 import ScriptInstalledView from './scriptinstalledview.jsx';
 
 export const mapStateToProps = (state) => {
+  console.log('mapStateToProps - state.root:', state.root);
   return {
     isLoading: state.root.get('isLoading'),
     hasScriptTag: state.root.get('hasScriptTag'),
@@ -32,10 +33,11 @@ export const ConnectedMain = (props) => {
     async function fetchData() {
       await props.getAppStatus();
       await props.getRecaptchaSettings();
+      console.log('ConnectedMain - props:', props); // Move the console log here
     }
 
     fetchData();
-  }, []);
+  }, [getAppStatus, getRecaptchaSettings]);
 
   if (props.isLoading) {
     return (
@@ -46,15 +48,14 @@ export const ConnectedMain = (props) => {
   return (
     <>
       <Page title='Spambuster'>
-      <ScriptInstalledView
-        recaptchaType={props.recaptchaType}
-        rcSiteKey={props.rcSiteKey}
-        rcSiteSecret={props.rcSiteSecret}
-        errorMessage={props.errorMessage}
-        showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
-        enablementLink={props.enablementLink}
-        recaptchaActivity={props.recaptchaActivity}
-      />
+        <ScriptInstalledView
+          recaptchaType={props.rcSiteKey}
+          rcSiteSecret={props.rcSiteSecret}
+          errorMessage={props.errorMessage}
+          showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
+          enablementLink={props.enablementLink}
+          recaptchaActivity={props.recaptchaActivity}
+        />
       </Page>
     </>
   )

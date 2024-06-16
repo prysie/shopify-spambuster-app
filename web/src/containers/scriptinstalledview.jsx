@@ -20,6 +20,8 @@ import SettingsTabContent from './settingsTabContent';
 import StatsTabContent from './statsTabContent';
 
 export const mapStateToProps = (state, props) => {
+  const rootState = state?.root;
+  console.log('mapStateToProps - rootState:', rootState);
   return {
     rcSiteKey: state.root.get('rcSiteKey'),
     rcSiteSecret: state.root.get('rcSiteSecret'),
@@ -45,6 +47,7 @@ export const mapDispatchToProps = (dispatch) => {
 }
 
 const ScriptInstalledView = ({ props }) => {
+  console.log('ScriptInstalledView - props:', props);  
   const [showSecret, setShowSecret] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
   const [startDate, setStartDate] = useState(null);
