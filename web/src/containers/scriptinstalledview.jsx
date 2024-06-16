@@ -19,17 +19,17 @@ import {
 import SettingsTabContent from './settingsTabContent';
 import StatsTabContent from './statsTabContent';
 
-export const mapStateToProps = (state, props) => {
+export const mapStateToProps = (state) => {
   const rootState = state?.root;
   console.log('scriptinstalledview.jsx - mapStateToProps - rootState:', rootState);
   return {
-    rcSiteKey: state.root.get('rcSiteKey'),
-    rcSiteSecret: state.root.get('rcSiteSecret'),
-    errorMessage: state.root.get('errorMessage'),
-    showKeySecretUpdateSuccess: state.root.get('showKeySecretUpdateSuccess'),
-    recaptchaType: state.root.get('recaptchaType'),
-    enablementLink: state.root.get('enablementLink'),
-    recaptchaActivity: state.root.get('recaptchaActivity'),
+    rcSiteKey: rootState.get('rcSiteKey'),
+    rcSiteSecret: rootState.get('rcSiteSecret'),
+    errorMessage: rootState.get('errorMessage'),
+    showKeySecretUpdateSuccess: rootState.get('showKeySecretUpdateSuccess'),
+    recaptchaType: rootState.get('recaptchaType'),
+    enablementLink: rootState.get('enablementLink'),
+    recaptchaActivity: rootState.get('recaptchaActivity'),
   }
 }
 
@@ -46,7 +46,7 @@ export const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ScriptInstalledView = ({ props }) => {
+const ScriptInstalledView = (props) => {
   console.log('scriptinstalledview.jsx - ScriptInstalledView - props:', props);  
   const [showSecret, setShowSecret] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
@@ -139,8 +139,8 @@ const ScriptInstalledView = ({ props }) => {
             <StatsTabContent
               startDate={startDate}
               endDate={endDate}
-              month={startDate ? startDate.getMonth() : new Date().getMonth()}
-              year={startDate ? startDate.getFullYear() : new Date().getFullYear()}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
               recaptchaActivity={props.recaptchaActivity}
             />
           </Card.Section>
