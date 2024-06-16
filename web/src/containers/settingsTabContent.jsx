@@ -76,15 +76,17 @@ const SettingsTabContent = ({
               </Banner>
             )}
             <TextField
-              value={rcSiteKey}
+              value={rcSiteKey || ''}
               onChange={handleRcSiteKeyChange}
               label='reCAPTCHA site key'
+              placeholder="Your reCAPTCHA site key"              
             />
             <TextField
-              value={showSecret ? rcSiteSecret : '***'}
+              value={showSecret ? rcSiteSecret || '' : '***'}
               onChange={handleRcSiteSecretChange}
               label='reCAPTCHA secret key'
               type={showSecret ? 'text' : 'password'}
+              placeholder="Your reCAPTCHA secret key"              
             />
             <Button onClick={toggleShowSecret} plain>
               {showSecret ? 'Hide Secret' : 'Show Secret'}

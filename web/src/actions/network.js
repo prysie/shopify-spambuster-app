@@ -26,7 +26,11 @@ import {
   UPDATE_RECAPTCHA_SETTINGS_FAILURE,
   GET_RECAPTCHA_ACTIVITY_START,
   GET_RECAPTCHA_ACTIVITY_SUCCESS,
-  GET_RECAPTCHA_ACTIVITY_FAILURE} from '../constants.js';
+  GET_RECAPTCHA_ACTIVITY_FAILURE,
+  GENERATE_RECAPTCHA_CREDENTIALS_START,
+  GENERATE_RECAPTCHA_CREDENTIALS_SUCCESS,
+  GENERATE_RECAPTCHA_CREDENTIALS_FAILURE
+} from '../constants.js';
 
 // Fetch reCAPTCHA settings actions
 export const getRecaptchaSettingsStart = () => {
@@ -307,6 +311,21 @@ export const updateContactDone = () => {
   }
 }
 
+export const generateRecaptchaCredentialsStart = () => ({
+  type: GENERATE_RECAPTCHA_CREDENTIALS_START,
+  payload: {}
+});
+
+export const generateRecaptchaCredentialsSuccess = (rcSiteKey, rcSiteSecret) => ({
+  type: GENERATE_RECAPTCHA_CREDENTIALS_SUCCESS,
+  payload: { rcSiteKey, rcSiteSecret }
+});
+
+export const generateRecaptchaCredentialsFailure = (error) => ({
+  type: GENERATE_RECAPTCHA_CREDENTIALS_FAILURE,
+  payload: { error }
+});
+
 export const updateContact = () => {
   return (dispatch, getState) => {
     const rootState = getState().root
@@ -340,6 +359,19 @@ export const getRecaptchaActivity = (startDate, endDate) => {
       })
       .catch((error) => {
         dispatch(getRecaptchaActivityFailure('Could not fetch reCAPTCHA activity.'));
+      });
+  };
+};
+
+export const generateRecaptchaCredentials = () => {
+  return (dispatch) => {
+    dispatch(generateRecaptchaCredentialsStart());
+    post(BACKEND_URL + '/generateRecaptchaCredentials' + window.location.search)
+      .then(json => {
+        dispatch(generateRecaptchaCredentialsSuccess(json.rcSiteKey, json.rcSiteSecret));
+      })
+      .catch(error => {
+        dispatch(generateRecaptchaCredentialsFailure('Could not generate reCAPTCHA credentials.'));
       });
   };
 };

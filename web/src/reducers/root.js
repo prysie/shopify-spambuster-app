@@ -161,7 +161,19 @@ const rootReducer = (state, action) => {
     case GET_RECAPTCHA_ACTIVITY_SUCCESS:
       state = state.set('recaptchaActivity', action.payload)
       state = state.set('isLoadingActivity', false)
-      return state      
+      return state
+    case GENERATE_RECAPTCHA_CREDENTIALS_START:
+      state = state.set('isLoading', true);
+      return state;
+    case GENERATE_RECAPTCHA_CREDENTIALS_SUCCESS:
+      state = state.set('rcSiteKey', action.payload.rcSiteKey);
+      state = state.set('rcSiteSecret', action.payload.rcSiteSecret);
+      state = state.set('isLoading', false);
+      return state;
+    case GENERATE_RECAPTCHA_CREDENTIALS_FAILURE:
+      state = state.set('errorMessage', action.payload.error);
+      state = state.set('isLoading', false);
+      return state;       
     default:
         return state
     }
