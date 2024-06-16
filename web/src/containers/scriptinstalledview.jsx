@@ -97,23 +97,24 @@ const ScriptInstalledView = (props) => {
   const toggleShowSecret = () => {
     setShowSecret(!showSecret);
   };
-
+/* 
   const tabs = [
     {
       id: 'settings',
       content: 'Settings',
       panelID: 'settings-panel',
     },
-/*    {
+   {
       id: 'stats',
       content: 'Stats',
       panelID: 'stats-panel',
     },
-*/
-  ];
 
+  ];
+*/
   return (
-    <Layout>
+    <h2>test</h2>
+  /*  <Layout>
       <Tabs tabs={tabs} selected={selectedTab} onSelect={handleTabChange}>
         <Tabs.Panel id="settings-panel" hidden={selectedTab !== 0}>
           <Card.Section>
@@ -137,7 +138,9 @@ const ScriptInstalledView = (props) => {
        </Tabs.Panel>
       </Tabs>
     </Layout>
-  );
+  */
+    );
+  
 };
 
 const ConnectedScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ScriptInstalledView);
