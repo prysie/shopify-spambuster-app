@@ -7,8 +7,10 @@ import {
   TextField,
   Button,
   Banner,
+  TextContainer,
   Layout,
-  TextContainer
+  Stack,
+  RadioButton,
 } from '@shopify/polaris'
 
 import {
@@ -25,7 +27,15 @@ export const mapStateToProps = (state, props) => {
   return {
     rcSiteKey: state.root.get('rcSiteKey'),
     rcSiteSecret: state.root.get('rcSiteSecret'),
-    errorMessage: state.root.get('errorMessage')
+    errorMessage: state.root.get('errorMessage'),
+    displayName: state.root.get('displayName'),
+    newDomain: state.root.get('newDomain'),
+    domainList: state.root.get('domainList'),
+    useCheckboxChallenge: state.root.get('useCheckboxChallenge'),
+    enableOnContactUs: state.root.get('enableOnContactUs'),
+    enableOnLogin: state.root.get('enableOnLogin'),
+    enableOnNewsletter: state.root.get('enableOnNewsletter'),
+    errorMessage: state.root.get('errorMessage'),    
   }
 }
 
@@ -35,7 +45,20 @@ export const mapDispatchToProps = (dispatch) => {
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
     install: () => dispatch(install()),
     dismissError: () => dispatch(dismissError()),
-    registerCredentials: () => dispatch(generateRecaptchaCredentials())
+    registerCredentials: () => dispatch(generateRecaptchaCredentials()),
+    handleDisplayNameChange: (value) => dispatch(handleDisplayNameChange(value)),
+    handleNewDomainChange: (value) => dispatch(handleNewDomainChange(value)),
+    handleAddDomain: () => dispatch(handleAddDomain()),
+    handleDomainChange: (index, value) => dispatch(handleDomainChange(index, value)),
+    handleDomainBlur: (index) => dispatch(handleDomainBlur(index)),
+    handleEditDomain: (index) => dispatch(handleEditDomain(index)),
+    handleRemoveDomain: (index) => dispatch(handleRemoveDomain(index)),
+    handleUseCheckboxChallengeChange: (checked) => dispatch(handleUseCheckboxChallengeChange(checked)),
+    handleEnableOnContactUsChange: (checked) => dispatch(handleEnableOnContactUsChange(checked)),
+    handleEnableOnLoginChange: (checked) => dispatch(handleEnableOnLoginChange(checked)),
+    handleEnableOnNewsletterChange: (checked) => dispatch(handleEnableOnNewsletterChange(checked)),
+    registerCredentials: () => dispatch(registerCredentials()),
+    dismissError: () => dispatch(dismissError()),    
   }
 }
 
@@ -54,42 +77,120 @@ export const ConnectedNoScriptInstalledView = (props) => {
 
   return (
     <Layout>
-        <Layout.Section>
+      <Layout.Section>
         <Card sectioned>
-            <TextContainer>
+          <TextContainer>
             <p>
-                Please insert your reCAPTCHA Enterprise keys. IMPORTANT: This application only supports Enterprise.
+              Please provide the necessary details to set up reCAPTCHA Enterprise for your website or app.
             </p>
-            </TextContainer>
-            {props.errorMessage !== '' ? (
+          </TextContainer>
+          {props.errorMessage !== '' ? (
             <Card.Section>
-                <Banner onDismiss={handleDismissError} status='critical'>
+              <Banner onDismiss={handleDismissError} status='critical'>
                 <p>{props.errorMessage}</p>
-                </Banner>
+              </Banner>
             </Card.Section>
-            ) : null}
-            <Form onSubmit={handleSubmit}>
+          ) : null}
+          <Form onSubmit={handleSubmit}>
             <FormLayout>
-                <TextField
+              <TextField
                 value={props.rcSiteKey}
                 onChange={props.handleRcSiteKeyChange}
                 label='reCAPTCHA site key'
-                />
-                <TextField
+              />
+              <TextField
                 value={props.rcSiteSecret}
                 onChange={props.handleRcSiteSecretChange}
                 label='reCAPTCHA secret key'
+              />
+              <Button submit>Install Spambuster</Button>
+              <TextContainer>
+                <p>
+                  If you don't have reCAPTCHA credentials, you can register for them automatically by providing the necessary details below.
+                </p>
+              </TextContainer>
+              <TextField
+                value={props.displayName}
+                onChange={props.handleDisplayNameChange}
+                label='Display name'
+                helpText='A descriptive name to help identify the key within the list of keys.'
+              />
+              <FormLayout.Group>
+                <TextField
+                  value={props.newDomain}
+                  onChange={props.handleNewDomainChange}
+                  label='Domain'
+                  placeholder='Enter a domain'
                 />
-                <Button submit>Install Spambuster</Button>
+                <Button onClick={props.handleAddDomain}>Add Domain</Button>
+              </FormLayout.Group>
+              {props.domainList.map((domain, index) => (
+                <Card key={index} sectioned>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                      {domain.editing ? (
+                        <TextField
+                          value={domain.value}
+                          onChange={(value) => props.handleDomainChange(index, value)}
+                          autoFocus
+                          onBlur={() => props.handleDomainBlur(index)}
+                        />
+                      ) : (
+                        <span>{domain.value}</span>
+                      )}
+                    </div>
+                    <div>
+                      {domain.editing ? (
+                        <Button size='slim' onClick={() => props.handleDomainBlur(index)}>Done</Button>
+                      ) : (
+                        <>
+                          <Button size='slim' icon={EditMinor} onClick={() => props.handleEditDomain(index)} />
+                          <Button size='slim' icon={DeleteMinor} onClick={() => props.handleRemoveDomain(index)} />
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              ))}
             </FormLayout>
-            </Form>
+          </Form>
         </Card>
-        </Layout.Section>
-        <Layout.Section secondary>
+        <Card sectioned title='Additional Settings'>
+          <FormLayout>
+            <Stack vertical>
+              <RadioButton
+                label='Use checkbox challenge'
+                helpText='Verifies users by requiring them to check I am not a robot checkbox. It can be changed after the key is created.'
+                checked={props.useCheckboxChallenge}
+                onChange={props.handleUseCheckboxChallengeChange}
+              />
+              <RadioButton
+                label='Enable on Contact Us'
+                helpText='Enables reCAPTCHA verification on the Contact Us form.'
+                checked={props.enableOnContactUs}
+                onChange={props.handleEnableOnContactUsChange}
+              />
+              <RadioButton
+                label='Enable on Login'
+                helpText='Enables reCAPTCHA verification on the Login form.'
+                checked={props.enableOnLogin}
+                onChange={props.handleEnableOnLoginChange}
+              />
+              <RadioButton
+                label='Enable on Newsletter'
+                helpText='Enables reCAPTCHA verification on the Newsletter subscription form.'
+                checked={props.enableOnNewsletter}
+                onChange={props.handleEnableOnNewsletterChange}
+              />
+            </Stack>
+          </FormLayout>
+        </Card>
+      </Layout.Section>
+      <Layout.Section secondary>
         <Card sectioned>
-            <Button primary onClick={handleRegisterCredentials}>Register for Credentials</Button>
+          <Button primary onClick={handleRegisterCredentials}>Register for Credentials</Button>
         </Card>
-        </Layout.Section>
+      </Layout.Section>
     </Layout>
   )
 }
