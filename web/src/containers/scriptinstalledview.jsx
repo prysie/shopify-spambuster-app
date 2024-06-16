@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import {
-  Card,
-  Layout,
-  Tabs,
-} from '@shopify/polaris';
+import { Card, Layout, Tabs } from '@shopify/polaris';
 
 import {
   handleRcSiteKeyChange,
@@ -15,11 +11,9 @@ import {
 } from '../actions/interface.js';
 
 import {
-  updateContact,
   update,
   getRecaptchaSettings,
-  updateRecaptchaSettings,
-  changeRecaptchaType
+  updateRecaptchaSettings
 } from '../actions/network.js';
 
 import SettingsTabContent from './settingsTabContent.jsx';
@@ -116,8 +110,8 @@ export const ConnectedScriptInstalledView = (props) => {
   return (
     <Layout>
       <Tabs tabs={tabs} selected={selectedTab} onSelect={handleTabChange}>
-        <Card.Section title={tabs[selectedTab].content}>
-          {selectedTab === 0 ? (
+        <Tabs.Panel id="settings-panel" hidden={selectedTab !== 0}>
+          <Card.Section>
             <SettingsTabContent
               rcSiteKey={props.rcSiteKey}
               rcSiteSecret={props.rcSiteSecret}
@@ -134,7 +128,10 @@ export const ConnectedScriptInstalledView = (props) => {
               handleRecaptchaTypeChange={handleRecaptchaTypeChange}
               recaptchaType={props.recaptchaType}
             />
-          ) : (
+          </Card.Section>
+        </Tabs.Panel>
+        <Tabs.Panel id="stats-panel" hidden={selectedTab !== 1}>
+          <Card.Section>
             <StatsTabContent
               startDate={startDate}
               endDate={endDate}
@@ -142,8 +139,8 @@ export const ConnectedScriptInstalledView = (props) => {
               setEndDate={setEndDate}
               recaptchaActivity={props.recaptchaActivity}
             />
-          )}
-        </Card.Section>
+          </Card.Section>
+        </Tabs.Panel>
       </Tabs>
     </Layout>
   );
