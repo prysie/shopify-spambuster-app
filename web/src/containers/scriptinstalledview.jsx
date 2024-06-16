@@ -97,48 +97,38 @@ const ScriptInstalledView = (props) => {
   const toggleShowSecret = () => {
     setShowSecret(!showSecret);
   };
-/* 
+ 
   const tabs = [
-    {
+/*    {
       id: 'settings',
       content: 'Settings',
       panelID: 'settings-panel',
     },
-   {
+*/  
+    {
       id: 'stats',
       content: 'Stats',
       panelID: 'stats-panel',
     },
-
   ];
-*/
+  
   return (
-    <h2>test</h2>
-  /*  <Layout>
+    <Layout>
       <Tabs tabs={tabs} selected={selectedTab} onSelect={handleTabChange}>
-        <Tabs.Panel id="settings-panel" hidden={selectedTab !== 0}>
+      <Tabs.Panel id="stats-panel" hidden={selectedTab !== 1}>
           <Card.Section>
-            <SettingsTabContent
-              rcSiteKey={props.rcSiteKey}
-              rcSiteSecret={props.rcSiteSecret}
-              errorMessage={props.errorMessage}
-              showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
-              enablementLink={props.enablementLink}
-              showSecret={showSecret}
-              toggleShowSecret={toggleShowSecret}
-              handleUpdateKeySecret={handleUpdateKeySecret}
-              handleDismissError={handleDismissError}
-              handleDismissSuccess={handleDismissSuccess}
-              handleRcSiteKeyChange={handleRcSiteKeyChange}
-              handleRcSiteSecretChange={handleRcSiteSecretChange}
-              handleRecaptchaTypeChange={handleRecaptchaTypeChange}
-              recaptchaType={props.recaptchaType}
+            <StatsTabContent
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+              recaptchaActivity={props.recaptchaActivity}
             />
           </Card.Section>
-       </Tabs.Panel>
+        </Tabs.Panel>
       </Tabs>
     </Layout>
-  */
+  
     );
   
 };
