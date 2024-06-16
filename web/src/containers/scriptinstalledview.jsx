@@ -21,7 +21,7 @@ import StatsTabContent from './statsTabContent';
 
 export const mapStateToProps = (state, props) => {
   const rootState = state?.root;
-  console.log('mapStateToProps - rootState:', rootState);
+  console.log('scriptinstalledview.jsx - mapStateToProps - rootState:', rootState);
   return {
     rcSiteKey: state.root.get('rcSiteKey'),
     rcSiteSecret: state.root.get('rcSiteSecret'),
@@ -47,7 +47,7 @@ export const mapDispatchToProps = (dispatch) => {
 }
 
 const ScriptInstalledView = ({ props }) => {
-  console.log('ScriptInstalledView - props:', props);  
+  console.log('scriptinstalledview.jsx - ScriptInstalledView - props:', props);  
   const [showSecret, setShowSecret] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
   const [startDate, setStartDate] = useState(null);
@@ -139,8 +139,8 @@ const ScriptInstalledView = ({ props }) => {
             <StatsTabContent
               startDate={startDate}
               endDate={endDate}
-              setStartDate={setStartDate}
-              setEndDate={setEndDate}
+              month={startDate ? startDate.getMonth() : new Date().getMonth()}
+              year={startDate ? startDate.getFullYear() : new Date().getFullYear()}
               recaptchaActivity={props.recaptchaActivity}
             />
           </Card.Section>
@@ -151,4 +151,5 @@ const ScriptInstalledView = ({ props }) => {
 };
 
 const ConnectedScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ScriptInstalledView);
+console.log('scriptinstalledview.jsx - ConnectedScriptInstalledView - props:', ConnectedScriptInstalledView.props);
 export default ConnectedScriptInstalledView;

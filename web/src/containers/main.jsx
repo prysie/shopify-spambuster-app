@@ -10,10 +10,10 @@ import {
   getRecaptchaSettings
 } from '../actions/network.js';
 
-import ScriptInstalledView from './scriptinstalledview.jsx';
+import ScriptInstalledView from './scriptinstalledview';
 
 export const mapStateToProps = (state) => {
-  console.log('mapStateToProps - state.root:', state.root);
+  console.log('main.jsx - mapStateToProps - state.root:', state.root);
   return {
     isLoading: state.root.get('isLoading'),
     hasScriptTag: state.root.get('hasScriptTag'),
