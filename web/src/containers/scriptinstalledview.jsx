@@ -104,11 +104,12 @@ const ScriptInstalledView = (props) => {
       content: 'Settings',
       panelID: 'settings-panel',
     },
-    {
+/*    {
       id: 'stats',
       content: 'Stats',
       panelID: 'stats-panel',
     },
+*/
   ];
 
   return (
@@ -133,18 +134,7 @@ const ScriptInstalledView = (props) => {
               recaptchaType={props.recaptchaType}
             />
           </Card.Section>
-        </Tabs.Panel>
-        <Tabs.Panel id="stats-panel" hidden={selectedTab !== 1}>
-          <Card.Section>
-            <StatsTabContent
-              startDate={startDate}
-              endDate={endDate}
-              setStartDate={setStartDate}
-              setEndDate={setEndDate}
-              recaptchaActivity={props.recaptchaActivity}
-            />
-          </Card.Section>
-        </Tabs.Panel>
+       </Tabs.Panel>
       </Tabs>
     </Layout>
   );
