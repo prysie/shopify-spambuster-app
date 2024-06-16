@@ -41,19 +41,13 @@ import {
 export const getInitialState = () => {
   return Map({
     isLoading: true, // To avoid displaying data prematurely
-
     hasScriptTag: false,
-
     rcSiteKey: '',
     rcSiteSecret: '',
-
-    recaptchaType: 'v3',
-
+    recaptchaType: 'Enterprise',
     errorMessage: '',
     showKeySecretUpdateSuccess: false,
-
     contactEnabled: false,
-
     errorMessageContact: '',
     enablementLink: '',
     showContactUpdateSuccess: false,

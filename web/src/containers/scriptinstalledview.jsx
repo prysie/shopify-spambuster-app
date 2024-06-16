@@ -47,11 +47,12 @@ export const mapDispatchToProps = (dispatch) => {
 }
 
 const ScriptInstalledView = (props) => {
-  console.log('scriptinstalledview.jsx - ScriptInstalledView - props:', props);  
+  console.log('scriptinstalledview.jsx - ScriptInstalledView - props:', props);
+  const today = new Date().toISOString().split('T')[0];
   const [showSecret, setShowSecret] = useState(false);
-  const [selectedTab, setSelectedTab] = useState(0);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [selectedTab, setSelectedTab] = useState(1);
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(today);
 
   const handleTabChange = (selectedTabIndex) => {
     setSelectedTab(selectedTabIndex);
