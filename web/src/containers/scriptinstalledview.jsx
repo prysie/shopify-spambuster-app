@@ -50,7 +50,7 @@ const ScriptInstalledView = (props) => {
   console.log('scriptinstalledview.jsx - ScriptInstalledView - props:', props);
   const today = new Date().toISOString().split('T')[0];
   const [showSecret, setShowSecret] = useState(false);
-  const [selectedTab, setSelectedTab] = useState(1);
+  const [selectedTab, setSelectedTab] = useState(0);
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
 
@@ -100,12 +100,12 @@ const ScriptInstalledView = (props) => {
   };
  
   const tabs = [
-/*    {
+    {
       id: 'settings',
       content: 'Settings',
       panelID: 'settings-panel',
     },
-*/  
+  
     {
       id: 'stats',
       content: 'Stats',
@@ -115,6 +115,17 @@ const ScriptInstalledView = (props) => {
 
   return (
     <Layout>
+      <Tabs.Panel id="stats-panel" hidden={selectedTab !== 1}>
+        <Card.Section>
+          <StatsTabContent
+            startDate={startDate}
+            endDate={endDate}
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+            recaptchaActivity={props.recaptchaActivity}
+          />
+        </Card.Section>
+      </Tabs.Panel>
       <Tabs tabs={tabs} selected={selectedTab} onSelect={handleTabChange}>
         <Tabs.Panel id="stats-panel" hidden={selectedTab !== 1}>
           <Card.Section>
@@ -129,9 +140,7 @@ const ScriptInstalledView = (props) => {
         </Tabs.Panel>
       </Tabs>
     </Layout>
-  
     );
-  
 };
 
 const ConnectedScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ScriptInstalledView);
