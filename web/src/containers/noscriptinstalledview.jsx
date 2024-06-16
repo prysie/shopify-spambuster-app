@@ -16,8 +16,9 @@ import {
   dismissError
 } from '../actions/interface.js'
 import {
-  install
-} from '../actions/network.js'
+    install,
+    registerCredentials
+  } from '../actions/network.js'
 
 export const mapStateToProps = (state, props) => {
   return {
@@ -32,7 +33,8 @@ export const mapDispatchToProps = (dispatch) => {
     handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
     install: () => dispatch(install()),
-    dismissError: () => dispatch(dismissError())
+    dismissError: () => dispatch(dismissError()),
+    registerCredentials: () => dispatch(registerCredentials())
   }
 }
 
@@ -45,14 +47,15 @@ export const ConnectedNoScriptInstalledView = (props) => {
     props.dismissError()
   }
 
+  const handleRegisterCredentials = () => {
+    props.registerCredentials()
+  }
+
   return (
     <Card sectioned>
       <TextContainer>
         <p>
-          Please insert your reCAPTCHA v3 keys. IMPORTANT: This application only supports v3.
-        </p>
-        <p>
-          Please get your keys here: <a href='https://www.google.com/recaptcha/admin/create' target='_blank' rel='noopener noreferrer'>https://www.google.com/recaptcha/admin/create</a>.
+          Please insert your reCAPTCHA Enterprise keys. IMPORTANT: This application only supports Enterprise.
         </p>
       </TextContainer>
       {props.errorMessage !== '' ? (
@@ -77,6 +80,7 @@ export const ConnectedNoScriptInstalledView = (props) => {
           <Button submit>Install Spambuster</Button>
         </FormLayout>
       </Form>
+      <Button onClick={handleRegisterCredentials}>Register for Credentials</Button>
     </Card>
   )
 }
