@@ -19,13 +19,14 @@ import {
 import SettingsTabContent from './settingsTabContent.jsx';
 import StatsTabContent from './statsTabContent.jsx';
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = (state, props) => {
   return {
     rcSiteKey: state.root.get('rcSiteKey'),
     rcSiteSecret: state.root.get('rcSiteSecret'),
     errorMessage: state.root.get('errorMessage'),
     showKeySecretUpdateSuccess: state.root.get('showKeySecretUpdateSuccess'),
     recaptchaType: state.root.get('recaptchaType'),
+    enablementLink: state.root.get('enablementLink'),
     recaptchaActivity: state.root.get('recaptchaActivity'),
   }
 }

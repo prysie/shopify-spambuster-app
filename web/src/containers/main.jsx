@@ -46,15 +46,15 @@ export const ConnectedMain = (props) => {
   return (
     <>
       <Page title='Spambuster'>
-        <ScriptInstalledView
-          recaptchaType={props.recaptchaType}
-          rcSiteKey={props.rcSiteKey}
-          rcSiteSecret={props.rcSiteSecret}
-          errorMessage={props.errorMessage}
-          showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
-          enablementLink={props.enablementLink}
-          recaptchaActivity={props.recaptchaActivity}
-        />
+      <ScriptInstalledView
+        recaptchaType={props.recaptchaType}
+        rcSiteKey={props.rcSiteKey}
+        rcSiteSecret={props.rcSiteSecret}
+        errorMessage={props.errorMessage}
+        showKeySecretUpdateSuccess={props.showKeySecretUpdateSuccess}
+        enablementLink={props.enablementLink}
+        recaptchaActivity={props.recaptchaActivity}
+      />
       </Page>
     </>
   )
