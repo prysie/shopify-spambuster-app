@@ -111,18 +111,18 @@ const ScriptInstalledView = (props) => {
       panelID: 'stats-panel',
     },
   ];
-  
+
   return (
     <Layout>
       <Tabs tabs={tabs} selected={selectedTab} onSelect={handleTabChange}>
-      <Tabs.Panel id="stats-panel" hidden={selectedTab !== 1}>
+        <Tabs.Panel id="stats-panel" hidden={selectedTab !== 1}>
           <Card.Section>
             <StatsTabContent
               startDate={startDate}
               endDate={endDate}
-              setStartDate={setStartDate}
-              setEndDate={setEndDate}
-              recaptchaActivity={props.recaptchaActivity}
+              setStartDate={handleStartDateChange}
+              setEndDate={handleEndDateChange}
+              recaptchaActivity={props.recaptchaActivity || []}
             />
           </Card.Section>
         </Tabs.Panel>
