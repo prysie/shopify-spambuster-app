@@ -16,7 +16,18 @@ import {
 import {
   handleRcSiteKeyChange,
   handleRcSiteSecretChange,
-  dismissError
+  dismissError,
+  handleDisplayNameChange,
+  handleNewDomainChange,
+  handleAddDomain,
+  handleDomainChange,
+  handleDomainBlur,
+  handleEditDomain,
+  handleRemoveDomain,
+  handleUseCheckboxChallengeChange,
+  handleEnableOnContactUsChange,
+  handleEnableOnLoginChange,
+  handleEnableOnNewsletterChange,
 } from '../actions/interface.js'
 import {
     install,
@@ -36,6 +47,7 @@ export const mapStateToProps = (state, props) => {
     enableOnLogin: state.root.get('enableOnLogin'),
     enableOnNewsletter: state.root.get('enableOnNewsletter'),
     errorMessage: state.root.get('errorMessage'),    
+    isLoading: state.root.get('isLoading'),
   }
 }
 
@@ -43,9 +55,6 @@ export const mapDispatchToProps = (dispatch) => {
   return {
     handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
-    install: () => dispatch(install()),
-    dismissError: () => dispatch(dismissError()),
-    registerCredentials: () => dispatch(generateRecaptchaCredentials()),
     handleDisplayNameChange: (value) => dispatch(handleDisplayNameChange(value)),
     handleNewDomainChange: (value) => dispatch(handleNewDomainChange(value)),
     handleAddDomain: () => dispatch(handleAddDomain()),
@@ -57,8 +66,10 @@ export const mapDispatchToProps = (dispatch) => {
     handleEnableOnContactUsChange: (checked) => dispatch(handleEnableOnContactUsChange(checked)),
     handleEnableOnLoginChange: (checked) => dispatch(handleEnableOnLoginChange(checked)),
     handleEnableOnNewsletterChange: (checked) => dispatch(handleEnableOnNewsletterChange(checked)),
+    install: () => dispatch(install()),
     registerCredentials: () => dispatch(registerCredentials()),
-    dismissError: () => dispatch(dismissError()),    
+    generateRecaptchaCredentials: () => dispatch(generateRecaptchaCredentials()),
+    dismissError: () => dispatch(dismissError()),  
   }
 }
 
@@ -160,7 +171,7 @@ export const ConnectedNoScriptInstalledView = (props) => {
             <Stack vertical>
               <RadioButton
                 label='Use checkbox challenge'
-                helpText='Verifies users by requiring them to check I am not a robot checkbox. It can be changed after the key is created.'
+                helpText='Verifies users by requiring them to check Im not a robot checkbox. It can be changed after the key is created.'
                 checked={props.useCheckboxChallenge}
                 onChange={props.handleUseCheckboxChallengeChange}
               />
@@ -188,12 +199,13 @@ export const ConnectedNoScriptInstalledView = (props) => {
       </Layout.Section>
       <Layout.Section secondary>
         <Card sectioned>
-          <Button primary onClick={handleRegisterCredentials}>Register for Credentials</Button>
+          <Button primary onClick={handleRegisterCredentials} loading={props.isLoading}>
+            Generate reCAPTCHA Credentials
+          </Button>
         </Card>
       </Layout.Section>
     </Layout>
   )
 }
-
 const NoScriptInstalledView = connect(mapStateToProps, mapDispatchToProps)(ConnectedNoScriptInstalledView)
 export default NoScriptInstalledView
