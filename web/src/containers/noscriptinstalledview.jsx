@@ -168,12 +168,12 @@ export const ConnectedNoScriptInstalledView = (props) => {
               <Select
                 label='reCAPTCHA Type'
                 options={[
-                    { label: 'reCAPTCHA Enterprise', value: 'Enterprise' },
-                    { label: 'reCAPTCHA v3', value: 'v3' },
+                  { label: 'reCAPTCHA Enterprise', value: 'Enterprise' },
+                  { label: 'reCAPTCHA v3', value: 'v3' },
                 ]}
                 value={props.recaptchaType}
                 onChange={props.handleRecaptchaTypeChange}
-                />
+              />
               <TextField
                 value={props.rcSiteKey}
                 onChange={props.handleRcSiteKeyChange}
@@ -190,25 +190,25 @@ export const ConnectedNoScriptInstalledView = (props) => {
         <Card sectioned title='Additional Settings'>
           <FormLayout>
             <Stack vertical>
-              <RadioButton
+              <Checkbox
                 label='Use checkbox challenge'
-                helpText='Verifies users by requiring them to check "I am not a robot" checkbox. It can be changed after the key is created.'
+                helpText='Verifies users by requiring them to check "I am not a robot checkbox. It can be changed after the key is created.'
                 checked={props.useCheckboxChallenge}
                 onChange={props.handleUseCheckboxChallengeChange}
               />
-              <RadioButton
+              <Checkbox
                 label='Enable on Contact Us'
                 helpText='Enables reCAPTCHA verification on the Contact Us form.'
                 checked={props.enableOnContactUs}
                 onChange={props.handleEnableOnContactUsChange}
               />
-              <RadioButton
+              <Checkbox
                 label='Enable on Login'
                 helpText='Enables reCAPTCHA verification on the Login form.'
                 checked={props.enableOnLogin}
                 onChange={props.handleEnableOnLoginChange}
               />
-              <RadioButton
+              <Checkbox
                 label='Enable on Newsletter'
                 helpText='Enables reCAPTCHA verification on the Newsletter subscription form.'
                 checked={props.enableOnNewsletter}
@@ -216,6 +216,9 @@ export const ConnectedNoScriptInstalledView = (props) => {
               />
             </Stack>
           </FormLayout>
+          <div style={{ marginTop: '1rem', textAlign: 'right' }}>
+            <Button primary onClick={handleSubmit}>Install Spambuster</Button>
+          </div>
         </Card>
       </Layout.Section>
       <Layout.Section secondary>
@@ -223,9 +226,6 @@ export const ConnectedNoScriptInstalledView = (props) => {
           <Button primary onClick={handleGenerateCredentials} loading={props.isLoading}>
             Generate reCAPTCHA Credentials
           </Button>
-        </Card>
-        <Card sectioned>
-          <Button onClick={handleSubmit}>Install Spambuster</Button>
         </Card>
       </Layout.Section>
     </Layout>
