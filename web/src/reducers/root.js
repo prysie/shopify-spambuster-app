@@ -177,7 +177,10 @@ const rootReducer = (state, action) => {
     case GENERATE_RECAPTCHA_CREDENTIALS_FAILURE:
       state = state.set('errorMessage', action.payload.error);
       state = state.set('isLoading', false);
-      return state;       
+      return state;  
+    case RECAPTCHA_TYPE_CHANGE:
+      state = state.set('recaptchaType', action.payload);
+      return state;           
     default:
         return state
     }
