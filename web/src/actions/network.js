@@ -367,10 +367,10 @@ export const getRecaptchaActivity = (startDate, endDate) => {
   };
 };
 
-export const generateRecaptchaCredentials = () => {
+export const generateRecaptchaCredentials = (domainList) => {
   return (dispatch) => {
     dispatch(generateRecaptchaCredentialsStart());
-    post(BACKEND_URL + '/createRecaptchaCredentials' + window.location.search)
+    post(BACKEND_URL + '/createRecaptchaCredentials' + window.location.search, { domainList })
       .then(json => {
         dispatch(generateRecaptchaCredentialsSuccess(json.rcSiteKey, json.rcSiteSecret));
       })
