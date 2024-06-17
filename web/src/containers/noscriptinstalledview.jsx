@@ -10,7 +10,7 @@ import {
   TextContainer,
   Layout,
   Stack,
-  RadioButton,
+  Checkbox,
   Select,
 } from '@shopify/polaris';
 import { EditMinor, DeleteMinor } from '@shopify/polaris-icons';
