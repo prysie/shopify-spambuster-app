@@ -10,7 +10,7 @@ import { BACKEND_URL, STAGE, APP_PATH } from './config.js'
 import store from './store.js'
 import { get, post } from './utilities.js'
 
-console.log('Spambuster app v2.0.31 - ' + STAGE)
+console.log('Spambuster app v2.0.32 - ' + STAGE)
 
 const render = (apiKey, shop) => {
   const App = require('./containers/app.jsx').default
@@ -93,15 +93,19 @@ if (session === null && code === null && hmac !== null && shop !== null && times
     console.error(error)
   })
 } else if (chargeID !== null) {
-  console.log('Returned from billing confirmation')
-  get(BACKEND_URL + '/activate' + window.location.search).then(json => {
-    startApp(shop)
-  }).catch(error => {
-    console.error(error)
-  })
-} else {
-  console.log('Installed version running')
-  startApp(shop)
+  console.log('Returned from billing confirmation');
+  get(BACKEND_URL + '/activate' + window.location.search)
+    .then(json => {
+      if (json.isActive === true) {
+        startApp(shop);
+      } else {
+        console.log('Payment not yet approved. Redirecting to the payment confirmation URL.');
+        window.top.location.href = json.confirmationURL;
+      }
+    })
+    .catch(error => {
+      console.error('Error activating the app after payment:', error);
+    });
 }
 
 export default {

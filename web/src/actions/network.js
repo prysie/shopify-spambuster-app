@@ -208,20 +208,20 @@ export const getAppStatusDone = (statusData) => {
 
 export const getAppStatus = () => {
   return (dispatch) => {
-    dispatch(getAppStatusStart());
+    dispatch(getAppStatusStart())
     get(BACKEND_URL + '/status' + window.location.search)
       .then(json => {
-        if (json.isSubscribed === false && json.hasScriptTag === false) {
-          window.top.location.href = json.confirmationURL;
-          return;
+        if (json.isSubscribed === false) {
+          window.top.location.href = json.confirmationURL
+          return
         }
-        dispatch(getAppStatusDone(json));
+        dispatch(getAppStatusDone(json))
       })
       .catch(error => {
-        dispatch(handleError(error, 'Could not get status.'));
-      });
-  };
-};
+        dispatch(handleError(error, 'Could not get status.'))
+      })
+  }
+}
 
 export const installStart = () => {
   return {
