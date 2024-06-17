@@ -1,5 +1,4 @@
-import { Map } from 'immutable'
-
+import { Map, fromJS } from 'immutable';
 import {
   APPSTATUS_GET_START,
   APPSTATUS_GET_DONE,
@@ -64,6 +63,10 @@ export const getInitialState = () => {
     isLoadingActivity: false,
     activityError: '',
     domainList: [],
+    useCheckboxChallenge: false,
+    enableOnContactUs: false,
+    enableOnLogin: false,
+    enableOnNewsletter: false,    
   })
 }
 

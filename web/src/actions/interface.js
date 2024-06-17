@@ -95,22 +95,22 @@ export const handleRecaptchaTypeChange = (value) => {
 }
 export const handleUseCheckboxChallengeChange = (checked) => ({
   type: USE_CHECKBOX_CHALLENGE_CHANGE,
-  payload: { checked }
+  payload: { checked: checked }
 });
 
 export const handleEnableOnContactUsChange = (checked) => ({
   type: ENABLE_ON_CONTACT_US_CHANGE,
-  payload: { checked }
+  payload: { checked: checked }
 });
 
 export const handleEnableOnLoginChange = (checked) => ({
   type: ENABLE_ON_LOGIN_CHANGE,
-  payload: { checked }
+  payload: { checked: checked }
 });
 
 export const handleEnableOnNewsletterChange = (checked) => ({
   type: ENABLE_ON_NEWSLETTER_CHANGE,
-  payload: { checked }
+  payload: { checked: checked }
 });
 
 export const handleDisplayNameChange = (value) => ({

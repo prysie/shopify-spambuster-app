@@ -124,14 +124,14 @@ export const ConnectedNoScriptInstalledView = (props) => {
             <FormLayout>
               <TextField
                 value={props.displayName}
-                onChange={props.handleDisplayNameChange}
+                onChange={(value) => props.handleDisplayNameChange(value)}
                 label='Display name'
                 helpText='A descriptive name to help identify the key within the list of keys.'
               />
               <FormLayout.Group>
                 <TextField
                   value={props.newDomain}
-                  onChange={props.handleNewDomainChange}
+                  onChange={(value) => props.handleNewDomainChange(value)}
                   label='Domain'
                   placeholder='Enter a domain'
                 />
@@ -194,25 +194,25 @@ export const ConnectedNoScriptInstalledView = (props) => {
                 label='Use checkbox challenge'
                 helpText='Verifies users by requiring them to check "I am not a robot checkbox. It can be changed after the key is created.'
                 checked={props.useCheckboxChallenge}
-                onChange={props.handleUseCheckboxChallengeChange}
+                onChange={(checked) => props.handleUseCheckboxChallengeChange(checked)}
               />
               <Checkbox
                 label='Enable on Contact Us'
                 helpText='Enables reCAPTCHA verification on the Contact Us form.'
                 checked={props.enableOnContactUs}
-                onChange={props.handleEnableOnContactUsChange}
+                onChange={(checked) => props.handleEnableOnContactUsChange(checked)}
               />
               <Checkbox
                 label='Enable on Login'
                 helpText='Enables reCAPTCHA verification on the Login form.'
                 checked={props.enableOnLogin}
-                onChange={props.handleEnableOnLoginChange}
+                onChange={(checked) => props.handleEnableOnLoginChange(checked)}
               />
               <Checkbox
                 label='Enable on Newsletter'
                 helpText='Enables reCAPTCHA verification on the Newsletter subscription form.'
                 checked={props.enableOnNewsletter}
-                onChange={props.handleEnableOnNewsletterChange}
+                onChange={(checked) => props.handleEnableOnNewsletterChange(checked)}
               />
             </Stack>
           </FormLayout>
