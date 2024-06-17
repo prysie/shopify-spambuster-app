@@ -36,7 +36,14 @@ import {
   GENERATE_RECAPTCHA_CREDENTIALS_START,
   GENERATE_RECAPTCHA_CREDENTIALS_SUCCESS,
   GENERATE_RECAPTCHA_CREDENTIALS_FAILURE,
-  RECAPTCHA_TYPE_CHANGE
+  RECAPTCHA_TYPE_CHANGE,
+  DISPLAY_NAME_CHANGE,
+  NEW_DOMAIN_CHANGE,
+  ADD_DOMAIN,
+  DOMAIN_CHANGE,
+  DOMAIN_BLUR,
+  EDIT_DOMAIN,
+  REMOVE_DOMAIN,
 } from '../constants.js';
 
 export const getInitialState = () => {
@@ -181,7 +188,31 @@ const rootReducer = (state, action) => {
       return state;  
     case RECAPTCHA_TYPE_CHANGE:
       state = state.set('recaptchaType', action.payload);
-      return state;           
+      return state;    
+    case ADD_DOMAIN:
+      return state.update('domainList', (list) =>
+        list.push(fromJS({ value: state.get('newDomain'), editing: false }))
+      ).set('newDomain', '');
+    case DOMAIN_CHANGE:
+      return state.updateIn(['domainList', action.payload.index], (domain) =>
+        domain.set('value', action.payload.value)
+      );
+    case DOMAIN_BLUR:
+      return state.updateIn(['domainList', action.payload], (domain) =>
+        domain.set('editing', false)
+      );
+    case EDIT_DOMAIN:
+      return state.updateIn(['domainList', action.payload], (domain) =>
+        domain.set('editing', true)
+      );          
+    case DISPLAY_NAME_CHANGE:
+      return state.set('displayName', action.payload);
+    case NEW_DOMAIN_CHANGE:
+      return state.set('newDomain', action.payload);
+    case REMOVE_DOMAIN:
+      return state.update('domainList', (list) =>
+        list.delete(action.payload)
+      );
     default:
         return state
     }
