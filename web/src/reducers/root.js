@@ -55,6 +55,7 @@ export const getInitialState = () => {
     recaptchaActivity: [],
     isLoadingActivity: false,
     activityError: '',
+    domainList: [],
   })
 }
 
@@ -130,7 +131,7 @@ const rootReducer = (state, action) => {
       state = state.set('isLoading', false)
       state = state.set('rcSiteKey', action.payload.rcSiteKey)
       state = state.set('rcSiteSecret', action.payload.rcSiteSecret)
-      state = state.set('recaptchaType', action.payload.recaptchaType) // Handle new recaptcha type
+      state = state.set('recaptchaType', action.payload.recaptchaType)
       return state
     case GET_RECAPTCHA_SETTINGS_FAILURE:
       state = state.set('isLoading', false)
