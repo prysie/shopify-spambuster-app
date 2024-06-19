@@ -10,7 +10,7 @@ import { BACKEND_URL, STAGE, APP_PATH } from './config.js'
 import store from './store.js'
 import { get, post } from './utilities.js'
 
-console.log('Spambuster app v2.1.1 - ' + STAGE)
+console.log('Spambuster app v2.1.2 - ' + STAGE)
 
 const render = (apiKey, shop) => {
   const App = require('./containers/app.jsx').default
@@ -48,13 +48,18 @@ const startReact = (apiKey, shop) => {
 }
 
 const startApp = (shop) => {
+  console.log('Starting the app');
   get(BACKEND_URL + '/access' + window.location.search).then(json => {
+    console.log('Response from /access:', json);
     if (json.apiKey) {
-      startReact(json.apiKey, shop)
+      console.log('API key received. Starting React.');
+      startReact(json.apiKey, shop);
+    } else {
+      console.log('API key not found in the response.');
     }
   }).catch(error => {
-    console.error(error)
-  })
+    console.error('Error fetching /access:', error);
+  });
 }
 
 const urlParams = new URLSearchParams(window.location.search)
