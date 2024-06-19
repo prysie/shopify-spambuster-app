@@ -96,11 +96,15 @@ if (session === null && code === null && hmac !== null && shop !== null && times
   console.log('Returned from billing confirmation');
   get(BACKEND_URL + '/activate' + window.location.search)
     .then(json => {
+      console.log('Response from /activate:', json);
       if (json.isActive === true) {
+        console.log('Payment approved. Starting the app.');
         startApp(shop);
-      } else {
+      } else if (json.isActive === false && json.confirmationURL) {
         console.log('Payment not yet approved. Redirecting to the payment confirmation URL.');
         window.top.location.href = json.confirmationURL;
+      } else {
+        console.error('Unexpected response from /activate:', json);
       }
     })
     .catch(error => {
