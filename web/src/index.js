@@ -1,5 +1,3 @@
-import 'regenerator-runtime/runtime'; // Add this line at the top
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -10,7 +8,7 @@ import { BACKEND_URL, STAGE, APP_PATH } from './config.js'
 import store from './store.js'
 import { get, post } from './utilities.js'
 
-console.log('Spambuster app v2.1.6 - ' + STAGE)
+console.log('Spambuster app v2.1.7 - ' + STAGE)
 
 const render = (apiKey, shop) => {
   console.log('Calling render')
