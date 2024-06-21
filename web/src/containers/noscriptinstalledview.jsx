@@ -148,8 +148,9 @@ export const ConnectedNoScriptInstalledView = (props) => {
                 Add Domain
               </Button>
             </FormLayout.Group>
-            {props.domainList && props.domainList.map((domain, index) => (
-              <Card key={index} sectioned>
+            {props.domainList && props.domainList.size > 0 ? (
+              props.domainList.map((domain, index) => (
+                <Card key={index} sectioned>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
                     {domain.editing ? (
@@ -174,8 +175,11 @@ export const ConnectedNoScriptInstalledView = (props) => {
                     )}
                   </div>
                 </div>
-              </Card>
-            ))}
+                </Card>
+              ))
+            ) : (
+              <TextContainer>No domains added yet.</TextContainer>
+            )}
               <Select
                 label='reCAPTCHA Type'
                 options={[

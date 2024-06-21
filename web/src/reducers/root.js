@@ -66,7 +66,7 @@ export const getInitialState = () => {
     recaptchaActivity: [],
     isLoadingActivity: false,
     activityError: '',
-    domainList: [],
+    domainList: List(),
     useCheckboxChallenge: false,
     enableOnContactUs: false,
     enableOnLogin: false,
@@ -198,9 +198,13 @@ const rootReducer = (state, action) => {
       state = state.set('recaptchaType', action.payload);
       return state;    
     case ADD_DOMAIN:
-      return state.update('domainList', (list) =>
-        list.push(fromJS({ value: state.get('newDomain'), editing: false }))
-      ).set('newDomain', '');
+      console.log('ADD_DOMAIN', state.get('newDomain')); // For debugging
+      if (state.get('newDomain')) {
+        return state
+          .update('domainList', list => list.push(Map({value: state.get('newDomain'), editing: false})))
+          .set('newDomain', '');
+      }
+      return state;
     case DOMAIN_CHANGE:
       return state.updateIn(['domainList', action.payload.index], (domain) =>
         domain.set('value', action.payload.value)
@@ -231,20 +235,17 @@ const rootReducer = (state, action) => {
       return state.set('newDomain', action.payload);
       case NEW_DOMAIN_CHANGE:
         console.log('NEW_DOMAIN_CHANGE', action.payload.value);
-        return state.set('newDomain', action.payload.value);
-      
+        return state.set('newDomain', action.payload.value);      
     case ADD_DOMAIN:
-      console.log('ADD_DOMAIN', state.get('newDomain')); // For debugging
+      console.log('ADD_DOMAIN', state.get('newDomain')); 
       if (state.get('newDomain')) {
         return state
           .update('domainList', list => list.push(Map({value: state.get('newDomain'), editing: false})))
           .set('newDomain', '');
       }
-      return state;   
-    case REMOVE_DOMAIN:
-      return state.update('domainList', (list) =>
-        list.delete(action.payload)
-      );
+      return state;
+      case REMOVE_DOMAIN:
+        return state.update('domainList', list => list.delete(action.payload));    
     default:
         return state
     }
