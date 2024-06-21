@@ -23,7 +23,6 @@ export const mapStateToProps = (state) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  console.log('mapDispatchToProps - props:', props);
   return {
     getAppStatus: () => dispatch(getAppStatus()),
     getRecaptchaSettings: () => dispatch(getRecaptchaSettings())
@@ -31,12 +30,10 @@ export const mapDispatchToProps = (dispatch) => {
 }
 
 export const ConnectedMain = (props) => {
-  console.log('ConnectedMain1 - props:', props);
   useEffect(() => {
     async function fetchData() {
       await props.getAppStatus();
       await props.getRecaptchaSettings();
-      console.log('ConnectedMain2 - props:', props);
     }
 
     fetchData();
