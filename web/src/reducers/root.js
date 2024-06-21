@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+import { Map, List, fromJS } from 'immutable';
 import {
   APPSTATUS_GET_START,
   APPSTATUS_GET_DONE,
@@ -63,7 +63,7 @@ export const getInitialState = () => {
     enablementLink: '',
     showContactUpdateSuccess: false,
     rangeSliderValue: .5,
-    recaptchaActivity: [],
+    recaptchaActivity: List(),
     isLoadingActivity: false,
     activityError: '',
     domainList: List(),
@@ -198,7 +198,7 @@ const rootReducer = (state, action) => {
       state = state.set('recaptchaType', action.payload);
       return state;    
     case ADD_DOMAIN:
-      console.log('ADD_DOMAIN', state.get('newDomain')); // For debugging
+      console.log('ADD_DOMAIN', state.get('newDomain'));
       if (state.get('newDomain')) {
         return state
           .update('domainList', list => list.push(Map({value: state.get('newDomain'), editing: false})))
@@ -206,29 +206,19 @@ const rootReducer = (state, action) => {
       }
       return state;
     case DOMAIN_CHANGE:
-      return state.updateIn(['domainList', action.payload.index], (domain) =>
-        domain.set('value', action.payload.value)
-      );
+      return state.setIn(['domainList', action.payload.index, 'value'], action.payload.value);
     case DOMAIN_BLUR:
-      return state.updateIn(['domainList', action.payload], (domain) =>
-        domain.set('editing', false)
-      );
+      return state.setIn(['domainList', action.payload.index, 'editing'], false);
     case EDIT_DOMAIN:
-      return state.updateIn(['domainList', action.payload], (domain) =>
-        domain.set('editing', true)
-      );
+      return state.setIn(['domainList', action.payload.index, 'editing'], true);
     case DISPLAY_NAME_CHANGE:
-      return state.set('displayName', action.payload.value);
-    
+      return state.set('displayName', action.payload.value);    
     case USE_CHECKBOX_CHALLENGE_CHANGE:
-      return state.set('useCheckboxChallenge', action.payload.checked);
-    
+      return state.set('useCheckboxChallenge', action.payload.checked);    
     case ENABLE_ON_CONTACT_US_CHANGE:
-      return state.set('enableOnContactUs', action.payload.checked);
-    
+      return state.set('enableOnContactUs', action.payload.checked);    
     case ENABLE_ON_LOGIN_CHANGE:
-      return state.set('enableOnLogin', action.payload.checked);
-    
+      return state.set('enableOnLogin', action.payload.checked);    
     case ENABLE_ON_NEWSLETTER_CHANGE:
       return state.set('enableOnNewsletter', action.payload.checked);          
     case NEW_DOMAIN_CHANGE:
@@ -245,7 +235,7 @@ const rootReducer = (state, action) => {
       }
       return state;
       case REMOVE_DOMAIN:
-        return state.update('domainList', list => list.delete(action.payload));    
+        return state.update('domainList', list => list.delete(action.payload));   
     default:
         return state
     }
