@@ -2128,7 +2128,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   APP_PATH: () => (/* binding */ APP_PATH),\n/* harmony export */   BACKEND_URL: () => (/* binding */ BACKEND_URL),\n/* harmony export */   STAGE: () => (/* binding */ STAGE)\n/* harmony export */ });\nvar _BACKEND_URL =  false ? 0 : 'https://ewwntzz1i2.execute-api.eu-west-1.amazonaws.com/dev';\nvar BACKEND_URL = _BACKEND_URL;\nvar APP_PATH =  false ? 0 : '/admin/apps/recaptcha-spambuster-dev';\nvar STAGE =  false ? 0 : 'dev';\n\n//# sourceURL=webpack:///./config.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   APP_PATH: () => (/* binding */ APP_PATH),\n/* harmony export */   BACKEND_URL: () => (/* binding */ BACKEND_URL),\n/* harmony export */   STAGE: () => (/* binding */ STAGE)\n/* harmony export */ });\nvar _BACKEND_URL =  false ? 0 : 'https://ewwntzz1i2.execute-api.eu-west-1.amazonaws.com/dev';\nvar BACKEND_URL = _BACKEND_URL;\nvar APP_PATH =  false ? 0 : '/admin/apps/recaptcha-spambuster-dev-1';\nvar STAGE =  false ? 0 : 'dev';\n\n//# sourceURL=webpack:///./config.js?");
 
 /***/ }),
 
