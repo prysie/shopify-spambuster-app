@@ -7,16 +7,19 @@ import { AppProvider } from '@shopify/polaris'
 import Main from './main.jsx'
 
 export const mapStateToProps = (state) => {
+  console.log('Calling app mapStateToProps')
   return {
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
+  console.log('Calling app mapDispatchToProps')
   return {
   }
 }
 
 export const ConnectedApp = (props) => {
+  console.log('Calling ConnectedApp')
   const config = {
     apiKey: props.apiKey,
     shopOrigin: props.shop
