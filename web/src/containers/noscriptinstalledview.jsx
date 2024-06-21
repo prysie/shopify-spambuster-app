@@ -35,6 +35,11 @@ import {
 import { install, generateRecaptchaCredentials } from '../actions/network.js';
 
 export const mapStateToProps = (state, props) => {
+  const root = state.root;
+  console.log('domainList:', root.get('domainList'));
+  console.log('domainList type:', typeof root.get('domainList'));
+  console.log('Is domainList an Immutable List?', List.isList(root.get('domainList')));
+
   return {
     rcSiteKey: state.root.get('rcSiteKey'),
     rcSiteSecret: state.root.get('rcSiteSecret'),
@@ -49,7 +54,7 @@ export const mapStateToProps = (state, props) => {
     recaptchaType: state.root.get('recaptchaType'),
     isLoading: state.root.get('isLoading'),
     newDomain: state.root.get('newDomain'),
-    domainList: state.root.get('domainList'),
+    domainList: state.root.get('domainList') || List(),
   };
 };
 
