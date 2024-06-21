@@ -64,7 +64,10 @@ export const mapDispatchToProps = (dispatch) => {
     handleRcSiteKeyChange: (value) => dispatch(handleRcSiteKeyChange(value)),
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
     handleDisplayNameChange: (value) => dispatch(handleDisplayNameChange(value)),
-    handleNewDomainChange: (value) => dispatch(handleNewDomainChange(value)),
+    handleNewDomainChange: (value) => {
+      console.log('handleNewDomainChange called with:', value);
+      dispatch(handleNewDomainChange(value));
+    },
     handleAddDomain: (newDomain) => {
       console.log('handleAddDomain in mapDispatchToProps called with:', newDomain);
       dispatch(handleAddDomain(newDomain));
@@ -146,6 +149,7 @@ export const ConnectedNoScriptInstalledView = (props) => {
                   console.log('New domain value:', value); // For debugging
                   props.handleNewDomainChange(value);
                 }}
+                onFocus={() => console.log('TextField focused')}
                 label='Domain'
                 placeholder='Enter a domain'
               />

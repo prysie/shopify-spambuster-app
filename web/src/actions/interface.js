@@ -89,7 +89,7 @@ export const handleRecaptchaTypeChange = (value) => {
   return {
     type: RECAPTCHA_TYPE_CHANGE,
     payload: {
-      value: value
+      value: { value },
     }
   }
 }
@@ -118,16 +118,19 @@ export const handleDisplayNameChange = (value) => ({
   payload: { value },
 });
 
-export const handleNewDomainChange = (value) => ({
-  type: NEW_DOMAIN_CHANGE,
-  payload: { value },
-});
+export const handleNewDomainChange = (value) => {
+  console.log('handleNewDomainChange action creator called with:', value);
+  return {
+    type: NEW_DOMAIN_CHANGE,
+    payload: { value },
+  };
+};
 
 export const handleAddDomain = (newDomain) => {
   console.log('handleAddDomain action creator called with:', newDomain);
   return {
     type: ADD_DOMAIN,
-    payload: newDomain
+    payload: { newDomain },
   };
 };
 
