@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { List, Map } from 'immutable';
 import {
   Card,
   Form,
@@ -153,33 +154,33 @@ export const ConnectedNoScriptInstalledView = (props) => {
                 Add Domain
               </Button>
             </FormLayout.Group>
-            {props.domainList && props.domainList.size > 0 ? (
+            {props.domainList && List.isList(props.domainList) && props.domainList.size > 0 ? (
               props.domainList.map((domain, index) => (
                 <Card key={index} sectioned>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    {domain.editing ? (
-                      <TextField
-                        value={domain.value}
-                        onChange={(value) => props.handleDomainChange(index, value)}
-                        autoFocus
-                        onBlur={() => props.handleDomainBlur(index)}
-                      />
-                    ) : (
-                      <span>{domain.value}</span>
-                    )}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                      {domain.get('editing') ? (
+                        <TextField
+                          value={domain.get('value')}
+                          onChange={(value) => props.handleDomainChange(index, value)}
+                          autoFocus
+                          onBlur={() => props.handleDomainBlur(index)}
+                        />
+                      ) : (
+                        <span>{domain.get('value')}</span>
+                      )}
+                    </div>
+                    <div>
+                      {domain.get('editing') ? (
+                        <Button size='slim' onClick={() => props.handleDomainBlur(index)}>Done</Button>
+                      ) : (
+                        <>
+                          <Button size='slim' icon={EditMinor} onClick={() => props.handleEditDomain(index)} />
+                          <Button size='slim' icon={DeleteMinor} onClick={() => props.handleRemoveDomain(index)} />
+                        </>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    {domain.editing ? (
-                      <Button size='slim' onClick={() => props.handleDomainBlur(index)}>Done</Button>
-                    ) : (
-                      <>
-                        <Button size='slim' icon={EditMinor} onClick={() => props.handleEditDomain(index)} />
-                        <Button size='slim' icon={DeleteMinor} onClick={() => props.handleRemoveDomain(index)} />
-                      </>
-                    )}
-                  </div>
-                </div>
                 </Card>
               ))
             ) : (

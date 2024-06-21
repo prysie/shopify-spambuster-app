@@ -237,10 +237,10 @@ const rootReducer = (state, action) => {
         console.log('NEW_DOMAIN_CHANGE', action.payload.value);
         return state.set('newDomain', action.payload.value);      
     case ADD_DOMAIN:
-      console.log('ADD_DOMAIN', state.get('newDomain')); 
+      console.log('ADD_DOMAIN', state.get('newDomain')); // For debugging
       if (state.get('newDomain')) {
         return state
-          .update('domainList', list => list.push(Map({value: state.get('newDomain'), editing: false})))
+          .update('domainList', list => (List.isList(list) ? list : List()).push(Map({value: state.get('newDomain'), editing: false})))
           .set('newDomain', '');
       }
       return state;
