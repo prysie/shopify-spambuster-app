@@ -65,11 +65,9 @@ export const mapDispatchToProps = (dispatch) => {
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
     handleDisplayNameChange: (value) => dispatch(handleDisplayNameChange(value)),
     handleNewDomainChange: (value) => {
-      console.log('handleNewDomainChange called with:', value);
       dispatch(handleNewDomainChange(value));
     },
     handleAddDomain: (newDomain) => {
-      console.log('handleAddDomain in mapDispatchToProps called with:', newDomain);
       dispatch(handleAddDomain(newDomain));
     },
     handleDomainChange: (index, value) => dispatch(handleDomainChange(index, value)),
@@ -155,10 +153,11 @@ export const ConnectedNoScriptInstalledView = (props) => {
               />
             <Button onClick={(e) => {
               e.preventDefault();
-              console.log('Add Domain button clicked');
-              console.log('Current newDomain value:', props.newDomain);
-              console.log('Current newDomain value:', props.newDomain);
-              props.handleAddDomain();
+              if (props.newDomain) {
+                props.handleAddDomain(props.newDomain);
+              } else {
+                console.log('No domain entered');
+              }
             }}>
               Add Domain
             </Button>
