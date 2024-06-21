@@ -230,12 +230,20 @@ const rootReducer = (state, action) => {
       console.log('NEW_DOMAIN_CHANGE', action.payload.value);
       return state.set('newDomain', action.payload.value);      
     case ADD_DOMAIN:
-      console.log('ADD_DOMAIN', state.get('newDomain')); // For debugging
-      if (state.get('newDomain')) {
-        return state
-          .update('domainList', list => (List.isList(list) ? list : List()).push(Map({value: state.get('newDomain'), editing: false})))
+      console.log('ADD_DOMAIN action received in reducer');
+      console.log('Payload (new domain):', action.payload);
+      console.log('Current domainList:', state.get('domainList').toJS());
+      if (action.payload) {
+        const updatedState = state
+          .update('domainList', list => {
+            const newList = list.push(Map({value: action.payload, editing: false}));
+            console.log('Updated domainList:', newList.toJS());
+            return newList;
+          })
           .set('newDomain', '');
+        return updatedState;
       }
+      console.log('No payload (new domain) provided, state unchanged');
       return state;
       case REMOVE_DOMAIN:
         return state.update('domainList', list => list.delete(action.payload));   

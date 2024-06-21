@@ -9,7 +9,7 @@ import { BACKEND_URL, STAGE, APP_PATH } from './config.js'
 import store from './store.js'
 import { get, post } from './utilities.js'
 
-console.log('Spambuster app v2.1.16 - ' + STAGE)
+console.log('Spambuster app v2.1.17 - ' + STAGE)
 
 const render = (apiKey, shop) => {
   console.log('Calling render')

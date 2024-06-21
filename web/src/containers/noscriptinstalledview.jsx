@@ -176,7 +176,7 @@ export const ConnectedNoScriptInstalledView = (props) => {
                           onBlur={() => props.handleDomainBlur(index)}
                         />
                       ) : (
-                        <span>{domain.get('value')}</span>
+                        <span>{typeof domain.get('value') === 'object' ? JSON.stringify(domain.get('value')) : domain.get('value')}</span>
                       )}
                     </div>
                     <div>
