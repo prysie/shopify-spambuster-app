@@ -198,16 +198,17 @@ const rootReducer = (state, action) => {
       state = state.set('recaptchaType', action.payload);
       return state;    
     case ADD_DOMAIN:
-      console.log('ADD_DOMAIN action triggered');
-      console.log('Current newDomain:', state.get('newDomain'));
+      console.log('ADD_DOMAIN action received in reducer');
+      console.log('Payload (new domain):', action.payload);
       console.log('Current domainList:', state.get('domainList').toJS());
-      if (state.get('newDomain')) {
+      if (action.payload) {
         const updatedState = state
-          .update('domainList', list => list.push(Map({value: state.get('newDomain'), editing: false})))
+          .update('domainList', list => list.push(Map({value: action.payload, editing: false})))
           .set('newDomain', '');
         console.log('Updated domainList:', updatedState.get('domainList').toJS());
         return updatedState;
       }
+      console.log('No payload (new domain) provided, state unchanged');
       return state;
     case DOMAIN_CHANGE:
       return state.setIn(['domainList', action.payload.index, 'value'], action.payload.value);
