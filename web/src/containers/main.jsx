@@ -1,3 +1,4 @@
+import "regenerator-runtime/runtime";
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
