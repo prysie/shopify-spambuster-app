@@ -48,6 +48,8 @@ export const mapStateToProps = (state, props) => {
     enableOnNewsletter: state.root.get('enableOnNewsletter'),
     recaptchaType: state.root.get('recaptchaType'),
     isLoading: state.root.get('isLoading'),
+    newDomain: state.root.get('newDomain'),
+    domainList: state.root.get('domainList'),
   };
 };
 
@@ -128,43 +130,52 @@ export const ConnectedNoScriptInstalledView = (props) => {
                 label='Display name'
                 helpText='A descriptive name to help identify the key within the list of keys.'
               />
-              <FormLayout.Group>
-                <TextField
-                  value={props.newDomain}
-                  onChange={(value) => props.handleNewDomainChange(value)}
-                  label='Domain'
-                  placeholder='Enter a domain'
-                />
-                <Button onClick={props.handleAddDomain}>Add Domain</Button>
-              </FormLayout.Group>
-              {props.domainList && props.domainList.map((domain, index) => (
-                <Card key={index} sectioned>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      {domain.editing ? (
-                        <TextField
-                          value={domain.value}
-                          onChange={(value) => props.handleDomainChange(index, value)}
-                          autoFocus
-                          onBlur={() => props.handleDomainBlur(index)}
-                        />
-                      ) : (
-                        <span>{domain.value}</span>
-                      )}
-                    </div>
-                    <div>
-                      {domain.editing ? (
-                        <Button size='slim' onClick={() => props.handleDomainBlur(index)}>Done</Button>
-                      ) : (
-                        <>
-                          <Button size='slim' icon={EditMinor} onClick={() => props.handleEditDomain(index)} />
-                          <Button size='slim' icon={DeleteMinor} onClick={() => props.handleRemoveDomain(index)} />
-                        </>
-                      )}
-                    </div>
+            <FormLayout.Group>
+              <TextField
+                value={props.newDomain}
+                onChange={(value) => {
+                  console.log('New domain value:', value); // For debugging
+                  props.handleNewDomainChange(value);
+                }}
+                label='Domain'
+                placeholder='Enter a domain'
+              />
+              <Button onClick={(e) => {
+                e.preventDefault();
+                console.log('Add Domain clicked, current value:', props.newDomain); // For debugging
+                props.handleAddDomain();
+              }}>
+                Add Domain
+              </Button>
+            </FormLayout.Group>
+            {props.domainList && props.domainList.map((domain, index) => (
+              <Card key={index} sectioned>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    {domain.editing ? (
+                      <TextField
+                        value={domain.value}
+                        onChange={(value) => props.handleDomainChange(index, value)}
+                        autoFocus
+                        onBlur={() => props.handleDomainBlur(index)}
+                      />
+                    ) : (
+                      <span>{domain.value}</span>
+                    )}
                   </div>
-                </Card>
-              ))}
+                  <div>
+                    {domain.editing ? (
+                      <Button size='slim' onClick={() => props.handleDomainBlur(index)}>Done</Button>
+                    ) : (
+                      <>
+                        <Button size='slim' icon={EditMinor} onClick={() => props.handleEditDomain(index)} />
+                        <Button size='slim' icon={DeleteMinor} onClick={() => props.handleRemoveDomain(index)} />
+                      </>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            ))}
               <Select
                 label='reCAPTCHA Type'
                 options={[

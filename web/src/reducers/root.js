@@ -227,9 +227,20 @@ const rootReducer = (state, action) => {
     
     case ENABLE_ON_NEWSLETTER_CHANGE:
       return state.set('enableOnNewsletter', action.payload.checked);          
-
     case NEW_DOMAIN_CHANGE:
       return state.set('newDomain', action.payload);
+      case NEW_DOMAIN_CHANGE:
+        console.log('NEW_DOMAIN_CHANGE', action.payload.value);
+        return state.set('newDomain', action.payload.value);
+      
+    case ADD_DOMAIN:
+      console.log('ADD_DOMAIN', state.get('newDomain')); // For debugging
+      if (state.get('newDomain')) {
+        return state
+          .update('domainList', list => list.push(Map({value: state.get('newDomain'), editing: false})))
+          .set('newDomain', '');
+      }
+      return state;   
     case REMOVE_DOMAIN:
       return state.update('domainList', (list) =>
         list.delete(action.payload)
