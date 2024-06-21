@@ -47,18 +47,13 @@ const startReact = (apiKey, shop) => {
 }
 
 const startApp = (shop) => {
-  console.log('Starting the app');
   get(BACKEND_URL + '/access' + window.location.search).then(json => {
-    console.log('Response from /access:', json);
     if (json.apiKey) {
-      console.log('API key received. Starting React.');
-      startReact(json.apiKey, shop);
-    } else {
-      console.log('API key not found in the response.');
+      startReact(json.apiKey, shop)
     }
   }).catch(error => {
-    console.error('Error fetching /access:', error);
-  });
+    console.error(error)
+  })
 }
 
 const urlParams = new URLSearchParams(window.location.search)
