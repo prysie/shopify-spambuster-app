@@ -367,14 +367,23 @@ export const getRecaptchaActivity = (startDate, endDate) => {
   };
 };
 
-export const generateRecaptchaCredentials = (domainList) => {
-  return (dispatch) => {
+export const generateRecaptchaCredentials = () => {
+  return (dispatch, getState) => {
+    const state = getState().root;
+    const domainList = state.get('domainList').toJS().map(domain => domain.value);
+    const displayName = state.get('displayName');
+    
+    console.log('Generating reCAPTCHA credentials with:', { domainList, displayName });
+
     dispatch(generateRecaptchaCredentialsStart());
-    post(BACKEND_URL + '/createRecaptchaCredentials' + window.location.search, { domainList })
+    
+    post(BACKEND_URL + '/createRecaptchaCredentials' + window.location.search, { domainList, displayName })
       .then(json => {
+        console.log('reCAPTCHA credentials generated successfully:', json);
         dispatch(generateRecaptchaCredentialsSuccess(json.rcSiteKey, json.rcSiteSecret));
       })
       .catch(error => {
+        console.error('Error generating reCAPTCHA credentials:', error);
         dispatch(generateRecaptchaCredentialsFailure('Could not generate new reCAPTCHA credentials.'));
       });
   };
