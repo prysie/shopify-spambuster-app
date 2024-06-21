@@ -66,7 +66,8 @@ export const getInitialState = () => {
     useCheckboxChallenge: false,
     enableOnContactUs: false,
     enableOnLogin: false,
-    enableOnNewsletter: false,    
+    enableOnNewsletter: false,       
+    displayName: '',
   })
 }
 
@@ -207,9 +208,22 @@ const rootReducer = (state, action) => {
     case EDIT_DOMAIN:
       return state.updateIn(['domainList', action.payload], (domain) =>
         domain.set('editing', true)
-      );          
+      );
     case DISPLAY_NAME_CHANGE:
-      return state.set('displayName', action.payload);
+      return state.set('displayName', action.payload.value);
+    
+    case USE_CHECKBOX_CHALLENGE_CHANGE:
+      return state.set('useCheckboxChallenge', action.payload.checked);
+    
+    case ENABLE_ON_CONTACT_US_CHANGE:
+      return state.set('enableOnContactUs', action.payload.checked);
+    
+    case ENABLE_ON_LOGIN_CHANGE:
+      return state.set('enableOnLogin', action.payload.checked);
+    
+    case ENABLE_ON_NEWSLETTER_CHANGE:
+      return state.set('enableOnNewsletter', action.payload.checked);          
+
     case NEW_DOMAIN_CHANGE:
       return state.set('newDomain', action.payload);
     case REMOVE_DOMAIN:
