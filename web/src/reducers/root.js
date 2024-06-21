@@ -198,11 +198,15 @@ const rootReducer = (state, action) => {
       state = state.set('recaptchaType', action.payload);
       return state;    
     case ADD_DOMAIN:
-      console.log('ADD_DOMAIN', state.get('newDomain'));
+      console.log('ADD_DOMAIN action triggered');
+      console.log('Current newDomain:', state.get('newDomain'));
+      console.log('Current domainList:', state.get('domainList').toJS());
       if (state.get('newDomain')) {
-        return state
+        const updatedState = state
           .update('domainList', list => list.push(Map({value: state.get('newDomain'), editing: false})))
           .set('newDomain', '');
+        console.log('Updated domainList:', updatedState.get('domainList').toJS());
+        return updatedState;
       }
       return state;
     case DOMAIN_CHANGE:

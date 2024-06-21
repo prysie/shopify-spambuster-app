@@ -65,7 +65,10 @@ export const mapDispatchToProps = (dispatch) => {
     handleRcSiteSecretChange: (value) => dispatch(handleRcSiteSecretChange(value)),
     handleDisplayNameChange: (value) => dispatch(handleDisplayNameChange(value)),
     handleNewDomainChange: (value) => dispatch(handleNewDomainChange(value)),
-    handleAddDomain: () => dispatch(handleAddDomain()),
+    handleAddDomain: () => {
+      console.log('handleAddDomain dispatched');
+      dispatch(handleAddDomain());
+    },
     handleDomainChange: (index, value) => dispatch(handleDomainChange(index, value)),
     handleDomainBlur: (index) => dispatch(handleDomainBlur(index)),
     handleEditDomain: (index) => dispatch(handleEditDomain(index)),
@@ -146,13 +149,14 @@ export const ConnectedNoScriptInstalledView = (props) => {
                 label='Domain'
                 placeholder='Enter a domain'
               />
-              <Button onClick={(e) => {
-                e.preventDefault();
-                console.log('Add Domain clicked, current value:', props.newDomain); // For debugging
-                props.handleAddDomain();
-              }}>
-                Add Domain
-              </Button>
+            <Button onClick={(e) => {
+              e.preventDefault();
+              console.log('Add Domain button clicked');
+              console.log('Current newDomain value:', props.newDomain);
+              props.handleAddDomain();
+            }}>
+              Add Domain
+            </Button>
             </FormLayout.Group>
             {props.domainList && List.isList(props.domainList) && props.domainList.size > 0 ? (
               props.domainList.map((domain, index) => (
