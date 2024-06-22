@@ -195,12 +195,12 @@ const rootReducer = (state, action) => {
       state = state.set('isLoading', false);
       return state;  
     case RECAPTCHA_TYPE_CHANGE:
-      state = state.set('recaptchaType', action.payload);
+      state = state.set('recaptchaType', action.payload.value);
       return state;    
     case ADD_DOMAIN:
       if (action.payload) {
         return state
-          .update('domainList', list => list.push(Map({value: String(action.payload), editing: false})))
+          .update('domainList', list => list.push(Map({value: String(action.payload.value), editing: false})))
           .set('newDomain', '');
       }
       return state;

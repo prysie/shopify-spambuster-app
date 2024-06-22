@@ -153,10 +153,14 @@ export const ConnectedNoScriptInstalledView = (props) => {
               />
             <Button onClick={(e) => {
               e.preventDefault();
-              if (props.newDomain) {
+              console.log('Add Domain button clicked');
+              console.log('Current newDomain value:', props.newDomain);
+              if (props.newDomain && props.newDomain.trim() !== '') {
                 props.handleAddDomain(props.newDomain);
+                props.handleNewDomainChange('');
               } else {
                 console.log('No domain entered');
+                // Optionally show an error message to the user
               }
             }}>
               Add Domain

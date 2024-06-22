@@ -127,7 +127,6 @@ export const handleNewDomainChange = (value) => {
 };
 
 export const handleAddDomain = (newDomain) => {
-  console.log('handleAddDomain action creator called with:', newDomain);
   return {
     type: ADD_DOMAIN,
     payload: { newDomain },
