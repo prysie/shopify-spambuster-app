@@ -19,6 +19,7 @@ import {
   ENABLE_ON_CONTACT_US_CHANGE,
   ENABLE_ON_LOGIN_CHANGE,
   ENABLE_ON_NEWSLETTER_CHANGE,
+  GENERATE_RECAPTCHA_CREDENTIALS_SUCCESS
 } from '../constants.js';
 
 export const handleRcSiteKeyChange = (value) => {
@@ -151,4 +152,12 @@ export const handleEditDomain = (index) => ({
 export const handleRemoveDomain = (index) => ({
   type: REMOVE_DOMAIN,
   payload: { index },
+});
+
+export const generateRecaptchaCredentialsSuccess = (rcSiteKey, rcSiteSecret, serviceAccountEmail, displayName) => ({
+  type: GENERATE_RECAPTCHA_CREDENTIALS_SUCCESS,
+  rcSiteKey,
+  rcSiteSecret,
+  serviceAccountEmail,
+  displayName
 });

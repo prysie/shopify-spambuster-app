@@ -235,8 +235,16 @@ const rootReducer = (state, action) => {
       }
       console.log('No payload (new domain) provided, state unchanged');
       return state;
-      case REMOVE_DOMAIN:
-        return state.update('domainList', list => list.delete(action.payload)); 
+    case REMOVE_DOMAIN:
+      return state.update('domainList', list => list.delete(action.payload));
+      case GENERATE_RECAPTCHA_CREDENTIALS_SUCCESS:
+        return state
+          .set('rcSiteKey', action.rcSiteKey)
+          .set('rcSiteSecret', action.rcSiteSecret)
+          .set('serviceAccountEmail', action.serviceAccountEmail)
+          .set('displayName', action.displayName)
+          .set('isGeneratingCredentials', false)
+          .set('credentialsError', null);        
     default:
         return state
     }

@@ -377,10 +377,10 @@ export const generateRecaptchaCredentials = () => {
 
     dispatch(generateRecaptchaCredentialsStart());
     
-    post(BACKEND_URL + '/createRecaptchaCredentials' + window.location.search, { domainList, displayName })
-      .then(json => {
-        console.log('reCAPTCHA credentials generated successfully:', json);
-        dispatch(generateRecaptchaCredentialsSuccess(json.rcSiteKey, json.rcSiteSecret));
+    post(BACKEND_URL + '/setupRecaptchaForShop' + window.location.search, { domainList, displayName })
+      .then(response => {
+        console.log('reCAPTCHA credentials generated successfully:', response);
+        dispatch(generateRecaptchaCredentialsSuccess(response.rcSiteKey, response.rcSiteSecret, response.serviceAccountEmail, response.displayName));
       })
       .catch(error => {
         console.error('Error generating reCAPTCHA credentials:', error);
